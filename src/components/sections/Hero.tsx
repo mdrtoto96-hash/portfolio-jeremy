@@ -4,80 +4,80 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section
-      className="w-full flex flex-col justify-center"
-      style={{ minHeight: "100vh", paddingTop: "5rem" }}
-    >
-      {/* Tag haut */}
+    <section style={{ paddingTop: "12rem", paddingBottom: "8rem" }}>
+
+      {/* Petite info en haut */}
       <motion.div
-        className="flex justify-between items-center mb-16"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "2.5rem",
+        }}
       >
-        <span style={{ fontSize: "0.7rem", letterSpacing: "0.15em", color: "#aaa", textTransform: "uppercase" }}>
+        <span style={{ fontSize: "0.68rem", letterSpacing: "0.15em", color: "#aaa", textTransform: "uppercase" }}>
           Vidéaste & Réalisateur
         </span>
-        <span style={{ fontSize: "0.7rem", letterSpacing: "0.1em", color: "#aaa" }}>
+        <span style={{ fontSize: "0.68rem", letterSpacing: "0.1em", color: "#aaa" }}>
           Paris — Disponible
         </span>
       </motion.div>
 
-      {/* Nom */}
-      <div>
-        <div style={{ overflow: "hidden" }}>
-          <motion.h1
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-            style={{
-              fontFamily: "var(--font-playfair)",
-              fontSize: "clamp(4rem, 11vw, 10rem)",
-              fontWeight: 500,
-              lineHeight: 0.9,
-              letterSpacing: "-0.03em",
-              color: "#0D0D0D",
-            }}
-          >
-            Jeremy
-          </motion.h1>
-        </div>
-        <div style={{ overflow: "hidden" }}>
-          <motion.h1
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
-            style={{
-              fontFamily: "var(--font-playfair)",
-              fontStyle: "italic",
-              fontSize: "clamp(4rem, 11vw, 10rem)",
-              fontWeight: 400,
-              lineHeight: 0.9,
-              letterSpacing: "-0.03em",
-              color: "#0D0D0D",
-            }}
-          >
-            Rondeau
-          </motion.h1>
-        </div>
+      {/* Nom — pleine largeur */}
+      <div style={{ overflow: "hidden" }}>
+        <motion.h1
+          initial={{ y: "100%" }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
+          style={{
+            fontFamily: "var(--font-playfair)",
+            fontSize: "clamp(3.8rem, 10vw, 9.5rem)",
+            fontWeight: 500,
+            lineHeight: 0.92,
+            letterSpacing: "-0.03em",
+            color: "#0D0D0D",
+          }}
+        >
+          Jeremy
+        </motion.h1>
       </div>
 
-      {/* Bas du hero */}
+      <div style={{ overflow: "hidden" }}>
+        <motion.h1
+          initial={{ y: "100%" }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.85, delay: 0.08, ease: [0.76, 0, 0.24, 1] }}
+          style={{
+            fontFamily: "var(--font-playfair)",
+            fontStyle: "italic",
+            fontSize: "clamp(3.8rem, 10vw, 9.5rem)",
+            fontWeight: 400,
+            lineHeight: 0.92,
+            letterSpacing: "-0.03em",
+            color: "#0D0D0D",
+          }}
+        >
+          Rondeau
+        </motion.h1>
+      </div>
+
+      {/* Description + CTA */}
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.6 }}
+        transition={{ duration: 0.7, delay: 0.55 }}
         style={{
-          marginTop: "3.5rem",
+          marginTop: "3rem",
           display: "flex",
-          flexDirection: "row",
           alignItems: "flex-end",
           justifyContent: "space-between",
           gap: "2rem",
           flexWrap: "wrap",
         }}
       >
-        <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "#666", maxWidth: "360px" }}>
+        <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "#666", maxWidth: "380px" }}>
           Je transforme vos idées en images qui marquent les esprits.
           Clips, publicités, documentaires, courts-métrages.
         </p>
@@ -95,6 +95,7 @@ export default function Hero() {
             transition: "all 0.25s",
             whiteSpace: "nowrap",
             flexShrink: 0,
+            cursor: "pointer",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = "#0D0D0D";
@@ -109,26 +110,6 @@ export default function Hero() {
         </button>
       </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.2 }}
-        style={{
-          marginTop: "4rem",
-          display: "flex",
-          alignItems: "center",
-          gap: "0.75rem",
-          color: "#ccc",
-        }}
-      >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          style={{ width: "1px", height: "36px", background: "#ccc" }}
-        />
-        <span style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>Défiler</span>
-      </motion.div>
     </section>
   );
 }

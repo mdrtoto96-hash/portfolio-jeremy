@@ -8,14 +8,10 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <main style={{ width: "100%", maxWidth: "1400px", margin: "0 auto", padding: "0 3rem" }}
-        className="px-8 md:px-16 lg:px-24"
-      >
+      <div style={{ width: "100%", maxWidth: "1200px", margin: "0 auto", padding: "0 2.5rem" }}>
         <Hero />
         <Portfolio />
         <Experience />
-      </main>
-      <div style={{ maxWidth: "1400px", margin: "0 auto" }} className="px-8 md:px-16 lg:px-24">
         <Footer />
       </div>
     </>
