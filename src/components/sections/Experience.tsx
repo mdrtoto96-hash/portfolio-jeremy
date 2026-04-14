@@ -39,14 +39,6 @@ const skills = [
   "Sony A7S III / FX3",
 ];
 
-const TITLE_STYLE = {
-  fontFamily: "var(--font-playfair)",
-  fontStyle: "italic",
-  fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
-  fontWeight: 400,
-  color: "#0D0D0D",
-};
-
 export default function Experience() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
@@ -54,50 +46,45 @@ export default function Experience() {
   return (
     <section id="experience" ref={ref} style={{ paddingTop: "5rem", paddingBottom: "6rem", borderTop: "1px solid #E5E4DF" }}>
 
-      {/* ── Ligne des titres — même niveau ── */}
+      {/* ── Deux colonnes avec séparateur vertical ── */}
       <div style={{
         display: "grid",
-        gridTemplateColumns: "1fr 320px",
-        gap: "4rem",
-        paddingBottom: "1.5rem",
-        borderBottom: "1px solid #E5E4DF",
-        marginBottom: "0",
-      }}>
-        <span id="experience-title" style={TITLE_STYLE}>Expérience</span>
-        <span id="competences" style={TITLE_STYLE}>Compétences</span>
-      </div>
-
-      {/* ── Contenu en deux colonnes ── */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 320px",
-        gap: "4rem",
+        gridTemplateColumns: "1fr 1px 340px",
+        gap: "0",
       }}>
 
-        {/* Colonne gauche — Expériences */}
-        <div>
+        {/* ── Colonne gauche : Expérience ── */}
+        <div style={{ paddingRight: "4rem" }}>
+          <p style={{
+            fontFamily: "var(--font-playfair)", fontStyle: "italic",
+            fontSize: "clamp(1.6rem, 2.5vw, 2.2rem)", fontWeight: 400,
+            color: "#0D0D0D", marginBottom: "2rem",
+          }}>
+            Expérience
+          </p>
+
           {experiences.map((exp, i) => (
             <motion.div
               key={exp.role}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               style={{
                 display: "grid",
-                gridTemplateColumns: "130px 1fr",
+                gridTemplateColumns: "120px 1fr",
                 gap: "1.5rem",
-                padding: "1.8rem 0",
+                padding: "1.6rem 0",
                 borderBottom: "1px solid #E5E4DF",
               }}
             >
-              <span style={{ fontSize: "0.72rem", color: "#999", letterSpacing: "0.03em", paddingTop: "0.15rem" }}>
+              <span style={{ fontSize: "0.72rem", color: "#999", letterSpacing: "0.03em", paddingTop: "0.1rem" }}>
                 {exp.period}
               </span>
               <div>
-                <p style={{ fontSize: "0.95rem", fontWeight: 500, color: "#0D0D0D", marginBottom: "0.2rem" }}>
+                <p style={{ fontSize: "0.92rem", fontWeight: 500, color: "#0D0D0D", marginBottom: "0.15rem" }}>
                   {exp.role}
                 </p>
-                <p style={{ fontSize: "0.75rem", color: "#E05C3A", marginBottom: "0.6rem", letterSpacing: "0.04em" }}>
+                <p style={{ fontSize: "0.73rem", color: "#E05C3A", marginBottom: "0.5rem", letterSpacing: "0.04em" }}>
                   {exp.company}
                 </p>
                 <p style={{ fontSize: "0.82rem", color: "#666", lineHeight: 1.7 }}>
@@ -108,29 +95,70 @@ export default function Experience() {
           ))}
         </div>
 
-        {/* Colonne droite — Compétences */}
-        <div>
+        {/* ── Séparateur vertical ── */}
+        <div style={{ background: "#E5E4DF", margin: "0" }} />
+
+        {/* ── Colonne droite : Photo + Compétences ── */}
+        <motion.div
+          id="competences"
+          initial={{ opacity: 0, y: 14 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          style={{ paddingLeft: "4rem" }}
+        >
+
+          {/* Photo */}
+          <div style={{ marginBottom: "2.5rem" }}>
+            {/* ── Remplacez ce bloc par votre photo :
+                <img src="/photo.jpg" alt="Jeremy Rondeau"
+                     style={{ width:"100%", maxWidth:"260px", height:"320px", objectFit:"cover" }} />
+            ── */}
+            <div style={{
+              width: "100%", maxWidth: "260px", height: "320px",
+              background: "#EDECE8", border: "1px dashed #C8C6C0",
+              display: "flex", flexDirection: "column",
+              alignItems: "center", justifyContent: "center", gap: "0.8rem",
+            }}>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C0BDB7" strokeWidth="0.9">
+                <circle cx="12" cy="8" r="4.5" />
+                <path d="M3 21c0-5 4-8.5 9-8.5s9 3.5 9 8.5" />
+              </svg>
+              <span style={{
+                fontSize: "0.6rem", letterSpacing: "0.14em", color: "#C0BDB7",
+                textTransform: "uppercase", textAlign: "center", lineHeight: 1.6,
+              }}>
+                Votre photo
+              </span>
+            </div>
+          </div>
+
+          {/* Compétences */}
+          <p style={{
+            fontFamily: "var(--font-playfair)", fontStyle: "italic",
+            fontSize: "clamp(1.6rem, 2.5vw, 2.2rem)", fontWeight: 400,
+            color: "#0D0D0D", marginBottom: "1.5rem",
+          }}>
+            Compétences
+          </p>
+
           {skills.map((s, i) => (
             <motion.div
               key={s}
               initial={{ opacity: 0, x: -8 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.2 + i * 0.07 }}
+              transition={{ duration: 0.4, delay: 0.3 + i * 0.07 }}
               style={{
-                padding: "1.1rem 0",
+                padding: "0.9rem 0",
                 borderBottom: "1px solid #E5E4DF",
-                fontSize: "0.85rem",
-                color: "#444",
-                display: "flex",
-                alignItems: "center",
-                gap: "0.75rem",
+                fontSize: "0.83rem", color: "#444",
+                display: "flex", alignItems: "center", gap: "0.75rem",
               }}
             >
               <span style={{ width: "4px", height: "4px", background: "#E05C3A", borderRadius: "50%", flexShrink: 0 }} />
               {s}
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>
