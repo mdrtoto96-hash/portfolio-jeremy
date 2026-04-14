@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
-import { DM_Sans, Playfair_Display } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
-const dm = DM_Sans({
+const inter = Inter({
   variable: "--font-dm",
   subsets: ["latin"],
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
   title: "Jeremy Rondeau — Vidéaste",
-  description: "Portfolio de Jeremy Rondeau, vidéaste professionnel. Cinéma, publicité, clip, documentaire.",
+  description: "Portfolio de Jeremy Rondeau, vidéaste professionnel. Clips, publicités, documentaires.",
   authors: [{ name: "Jeremy Rondeau" }],
   openGraph: {
     title: "Jeremy Rondeau — Vidéaste",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${dm.variable} ${playfair.variable}`}>
+    <html lang="fr" className={`${inter.variable} ${cormorant.variable}`}>
       <body>{children}</body>
     </html>
   );

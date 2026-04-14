@@ -22,11 +22,11 @@ export default function Home() {
             <h1 style={{
               fontFamily: "var(--font-playfair)",
               fontStyle: "italic",
-              fontSize: "clamp(2rem, 4vw, 3.2rem)",
-              fontWeight: 500,
+              fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)",
+              fontWeight: 400,
               lineHeight: 1,
               color: "#0D0D0D",
-              letterSpacing: "-0.01em",
+              letterSpacing: "0.01em",
             }}>
               Jeremy Rondeau
             </h1>
