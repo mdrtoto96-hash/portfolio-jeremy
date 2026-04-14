@@ -39,117 +39,99 @@ const skills = [
   "Sony A7S III / FX3",
 ];
 
+const TITLE_STYLE = {
+  fontFamily: "var(--font-playfair)",
+  fontStyle: "italic",
+  fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
+  fontWeight: 400,
+  color: "#0D0D0D",
+};
+
 export default function Experience() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section
-      id="experience"
-      ref={ref}
-      className="w-full"
-      style={{
-        padding: "7rem 0",
-        borderTop: "1px solid #E5E4DF",
-      }}
-    >
-      <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "5rem" }} className="lg:grid-cols-[1fr_320px] lg:gap-20">
-        {/* Expériences */}
+    <section id="experience" ref={ref} style={{ paddingTop: "5rem", paddingBottom: "6rem", borderTop: "1px solid #E5E4DF" }}>
+
+      {/* ── Ligne des titres — même niveau ── */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 320px",
+        gap: "4rem",
+        paddingBottom: "1.5rem",
+        borderBottom: "1px solid #E5E4DF",
+        marginBottom: "0",
+      }}>
+        <span id="experience-title" style={TITLE_STYLE}>Expérience</span>
+        <span id="competences" style={TITLE_STYLE}>Compétences</span>
+      </div>
+
+      {/* ── Contenu en deux colonnes ── */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 320px",
+        gap: "4rem",
+      }}>
+
+        {/* Colonne gauche — Expériences */}
         <div>
-          <span
-            style={{
-              fontFamily: "var(--font-playfair)",
-              fontStyle: "italic",
-              fontSize: "clamp(2rem, 4vw, 3rem)",
-              color: "#0D0D0D",
-              display: "block",
-              marginBottom: "3rem",
-            }}
-          >
-            Expérience
-          </span>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-            {experiences.map((exp, i) => (
-              <motion.div
-                key={exp.role}
-                initial={{ opacity: 0, y: 16 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "140px 1fr",
-                  gap: "2rem",
-                  padding: "2rem 0",
-                  borderBottom: "1px solid #E5E4DF",
-                }}
-              >
-                {/* Période */}
-                <div>
-                  <span style={{ fontSize: "0.75rem", color: "#888", letterSpacing: "0.04em" }}>
-                    {exp.period}
-                  </span>
-                </div>
-
-                {/* Contenu */}
-                <div>
-                  <p style={{ fontSize: "1rem", fontWeight: 500, color: "#0D0D0D", marginBottom: "0.2rem" }}>
-                    {exp.role}
-                  </p>
-                  <p style={{ fontSize: "0.8rem", color: "#E05C3A", marginBottom: "0.8rem", letterSpacing: "0.04em" }}>
-                    {exp.company}
-                  </p>
-                  <p style={{ fontSize: "0.85rem", color: "#666", lineHeight: 1.7 }}>
-                    {exp.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          {experiences.map((exp, i) => (
+            <motion.div
+              key={exp.role}
+              initial={{ opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "130px 1fr",
+                gap: "1.5rem",
+                padding: "1.8rem 0",
+                borderBottom: "1px solid #E5E4DF",
+              }}
+            >
+              <span style={{ fontSize: "0.72rem", color: "#999", letterSpacing: "0.03em", paddingTop: "0.15rem" }}>
+                {exp.period}
+              </span>
+              <div>
+                <p style={{ fontSize: "0.95rem", fontWeight: 500, color: "#0D0D0D", marginBottom: "0.2rem" }}>
+                  {exp.role}
+                </p>
+                <p style={{ fontSize: "0.75rem", color: "#E05C3A", marginBottom: "0.6rem", letterSpacing: "0.04em" }}>
+                  {exp.company}
+                </p>
+                <p style={{ fontSize: "0.82rem", color: "#666", lineHeight: 1.7 }}>
+                  {exp.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Compétences */}
-        <motion.div
-          id="competences"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <span
-            style={{
-              fontFamily: "var(--font-playfair)",
-              fontStyle: "italic",
-              fontSize: "clamp(1.5rem, 3vw, 2rem)",
-              color: "#0D0D0D",
-              display: "block",
-              marginBottom: "2rem",
-            }}
-          >
-            Compétences
-          </span>
-          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-            {skills.map((s, i) => (
-              <motion.div
-                key={s}
-                initial={{ opacity: 0, x: -8 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.5 + i * 0.06 }}
-                style={{
-                  padding: "0.9rem 0",
-                  borderBottom: "1px solid #E5E4DF",
-                  fontSize: "0.85rem",
-                  color: "#444",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                }}
-              >
-                <span style={{ width: "4px", height: "4px", background: "#E05C3A", borderRadius: "50%", flexShrink: 0 }} />
-                {s}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        {/* Colonne droite — Compétences */}
+        <div>
+          {skills.map((s, i) => (
+            <motion.div
+              key={s}
+              initial={{ opacity: 0, x: -8 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.4, delay: 0.2 + i * 0.07 }}
+              style={{
+                padding: "1.1rem 0",
+                borderBottom: "1px solid #E5E4DF",
+                fontSize: "0.85rem",
+                color: "#444",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.75rem",
+              }}
+            >
+              <span style={{ width: "4px", height: "4px", background: "#E05C3A", borderRadius: "50%", flexShrink: 0 }} />
+              {s}
+            </motion.div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

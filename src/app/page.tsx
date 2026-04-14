@@ -11,17 +11,16 @@ export default function Home() {
 
         {/* ── Identité ── */}
         <div style={{
-          paddingTop: "6rem",
+          paddingTop: "5.5rem",
           paddingBottom: "2.5rem",
           borderBottom: "1px solid #E5E4DF",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-          gap: "2rem",
-          flexWrap: "wrap",
+          display: "grid",
+          gridTemplateColumns: "1fr auto",
+          gap: "3rem",
+          alignItems: "end",
         }}>
 
-          {/* Nom + titre */}
+          {/* Gauche : nom + titre */}
           <div>
             <h1 style={{
               fontFamily: "var(--font-playfair)",
@@ -45,29 +44,34 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Photo + localisation */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "1rem" }}>
+          {/* Droite : photo + localisation */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.9rem" }}>
 
-            {/* ── PHOTO ── Remplacez ce bloc par <img src="/photo.jpg" .../> quand vous avez votre photo */}
+            {/* Photo — remplacez ce bloc par votre image :
+                <img src="/photo.jpg" alt="Jeremy Rondeau"
+                     style={{ width:"160px", height:"200px", objectFit:"cover" }} />
+            */}
             <div style={{
-              width: "90px",
-              height: "110px",
+              width: "160px",
+              height: "200px",
               background: "#EDECE8",
               border: "1px dashed #C8C6C0",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              gap: "0.4rem",
-              flexShrink: 0,
+              gap: "0.6rem",
             }}>
-              {/* Icône silhouette */}
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C8C6C0" strokeWidth="1.2">
-                <circle cx="12" cy="8" r="4" />
-                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#C0BDB7" strokeWidth="1">
+                <circle cx="12" cy="8" r="4.5" />
+                <path d="M3 21c0-5 4-8.5 9-8.5s9 3.5 9 8.5" />
               </svg>
-              <span style={{ fontSize: "0.55rem", letterSpacing: "0.1em", color: "#C8C6C0", textTransform: "uppercase", textAlign: "center", lineHeight: 1.4 }}>
-                Votre<br />photo
+              <span style={{
+                fontSize: "0.58rem", letterSpacing: "0.12em",
+                color: "#C0BDB7", textTransform: "uppercase",
+                textAlign: "center", lineHeight: 1.5,
+              }}>
+                Votre photo
               </span>
             </div>
 
@@ -75,6 +79,7 @@ export default function Home() {
               Paris · Disponible
             </p>
           </div>
+
         </div>
 
         <Portfolio />
