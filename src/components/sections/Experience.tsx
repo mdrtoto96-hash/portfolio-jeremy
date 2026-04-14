@@ -47,7 +47,7 @@ export default function Experience() {
     <section
       id="experience"
       ref={ref}
-      style={{ paddingTop: "5rem", paddingBottom: "6rem", borderTop: "1px solid #E5E4DF" }}
+      style={{ paddingTop: "5rem", paddingBottom: "6rem" }}
     >
       <div style={{
         display: "grid",

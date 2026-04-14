@@ -11,12 +11,17 @@ export default function About() {
     <section
       id="about"
       ref={ref}
-      style={{ paddingTop: "5rem", paddingBottom: "5rem", borderTop: "1px solid #E5E4DF" }}
+      style={{
+        paddingTop: "5rem",
+        paddingBottom: "5rem",
+        borderTop: "1px solid #E5E4DF",
+        borderBottom: "1px solid #E5E4DF",
+      }}
     >
       <div style={{
         display: "grid",
-        gridTemplateColumns: "200px 1fr",
-        gap: "4rem",
+        gridTemplateColumns: "260px 1fr",
+        gap: "5rem",
         alignItems: "start",
       }}>
 
@@ -25,19 +30,18 @@ export default function About() {
           initial={{ opacity: 0, y: 14 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          style={{ flexShrink: 0 }}
         >
           {/*
             Pour ajouter votre photo, remplacez ce bloc par :
             <img
               src="/photo.jpg"
               alt="Jeremy Rondeau"
-              style={{ width: "200px", height: "260px", objectFit: "cover", display: "block" }}
+              style={{ width: "260px", height: "340px", objectFit: "cover", display: "block" }}
             />
           */}
           <div style={{
-            width: "200px",
-            height: "260px",
+            width: "260px",
+            height: "340px",
             background: "#EDECE8",
             border: "1px dashed #C8C6C0",
             display: "flex",
@@ -45,6 +49,7 @@ export default function About() {
             alignItems: "center",
             justifyContent: "center",
             gap: "0.7rem",
+            flexShrink: 0,
           }}>
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#C0BDB7" strokeWidth="0.9">
               <circle cx="12" cy="8" r="4.5" />
@@ -59,11 +64,12 @@ export default function About() {
           </div>
         </motion.div>
 
-        {/* ── Texte de motivation ── */}
+        {/* ── Texte ── */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.15 }}
+          style={{ minWidth: 0 }}
         >
           <p style={{
             fontFamily: "var(--font-playfair)", fontStyle: "italic",
@@ -75,24 +81,23 @@ export default function About() {
 
           {/*
             ── TEXTE DE MOTIVATION ──
-            Remplacez ce texte par votre propre présentation.
-            Conseils :
-            - Paragraphe 1 : qui vous êtes, votre passion pour l'image
-            - Paragraphe 2 : votre expérience et ce qui vous différencie
-            - Paragraphe 3 : ce que vous recherchez (poste en agence)
+            Remplacez ce texte par votre présentation personnelle.
+            Paragraphe 1 : votre passion, votre approche
+            Paragraphe 2 : votre expérience et ce qui vous différencie
+            Paragraphe 3 : ce que vous recherchez
           */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
-            <p style={{ fontSize: "0.9rem", lineHeight: 1.85, color: "#444" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem", maxWidth: "620px" }}>
+            <p style={{ fontSize: "0.9rem", lineHeight: 1.9, color: "#444" }}>
               Passionné par l&apos;image depuis mon plus jeune âge, j&apos;ai construit mon parcours autour
               d&apos;une conviction simple : chaque histoire mérite d&apos;être racontée avec soin et précision.
               Le cadre, la lumière, le montage — chaque détail compte pour créer une émotion juste.
             </p>
-            <p style={{ fontSize: "0.9rem", lineHeight: 1.85, color: "#444" }}>
+            <p style={{ fontSize: "0.9rem", lineHeight: 1.9, color: "#444" }}>
               Après plusieurs années à travailler sur des projets variés — clips musicaux, films publicitaires,
               documentaires — j&apos;ai développé une vraie sensibilité visuelle et la capacité de m&apos;adapter
               à des univers créatifs très différents, tout en apportant ma propre vision.
             </p>
-            <p style={{ fontSize: "0.9rem", lineHeight: 1.85, color: "#444" }}>
+            <p style={{ fontSize: "0.9rem", lineHeight: 1.9, color: "#444" }}>
               Je suis aujourd&apos;hui à la recherche d&apos;un poste de vidéaste au sein d&apos;une agence de
               communication pour mettre mes compétences au service de projets ambitieux et continuer
               à évoluer dans un environnement stimulant.
@@ -105,7 +110,7 @@ export default function About() {
             paddingTop: "1.5rem",
             borderTop: "1px solid #E5E4DF",
             display: "flex",
-            gap: "3rem",
+            gap: "4rem",
             flexWrap: "wrap",
           }}>
             {[
@@ -114,7 +119,10 @@ export default function About() {
               { label: "Mobilité", value: "France & International" },
             ].map((item) => (
               <div key={item.label}>
-                <p style={{ fontSize: "0.62rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#bbb", marginBottom: "0.3rem" }}>
+                <p style={{
+                  fontSize: "0.62rem", letterSpacing: "0.15em",
+                  textTransform: "uppercase", color: "#bbb", marginBottom: "0.3rem",
+                }}>
                   {item.label}
                 </p>
                 <p style={{ fontSize: "0.85rem", color: "#0D0D0D" }}>
