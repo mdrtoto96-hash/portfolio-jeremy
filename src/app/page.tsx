@@ -1,32 +1,23 @@
-import CustomCursor from "@/components/ui/CustomCursor";
-import SmoothScroll from "@/components/ui/SmoothScroll";
-import Loader from "@/components/ui/Loader";
 import Navigation from "@/components/ui/Navigation";
 import Hero from "@/components/sections/Hero";
-import Showreel from "@/components/sections/Showreel";
-import Work from "@/components/sections/Work";
-import About from "@/components/sections/About";
-import Services from "@/components/sections/Services";
-import Contact from "@/components/sections/Contact";
+import Portfolio from "@/components/sections/Portfolio";
+import Experience from "@/components/sections/Experience";
 import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
     <>
-      <Loader />
-      <CustomCursor />
-      <SmoothScroll>
-        <Navigation />
-        <main>
-          <Hero />
-          <Showreel />
-          <Work />
-          <About />
-          <Services />
-          <Contact />
-        </main>
+      <Navigation />
+      <main style={{ width: "100%", maxWidth: "1400px", margin: "0 auto", padding: "0 3rem" }}
+        className="px-8 md:px-16 lg:px-24"
+      >
+        <Hero />
+        <Portfolio />
+        <Experience />
+      </main>
+      <div style={{ maxWidth: "1400px", margin: "0 auto" }} className="px-8 md:px-16 lg:px-24">
         <Footer />
-      </SmoothScroll>
+      </div>
     </>
   );
 }
