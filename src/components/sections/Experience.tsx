@@ -49,8 +49,9 @@ export default function Experience() {
       {/* ── Deux colonnes avec séparateur vertical ── */}
       <div style={{
         display: "grid",
-        gridTemplateColumns: "1fr 1px 340px",
+        gridTemplateColumns: "minmax(0, 1.6fr) 1px minmax(0, 1fr)",
         gap: "0",
+        alignItems: "start",
       }}>
 
         {/* ── Colonne gauche : Expérience ── */}
@@ -111,10 +112,10 @@ export default function Experience() {
           <div style={{ marginBottom: "2.5rem" }}>
             {/* ── Remplacez ce bloc par votre photo :
                 <img src="/photo.jpg" alt="Jeremy Rondeau"
-                     style={{ width:"100%", maxWidth:"260px", height:"320px", objectFit:"cover" }} />
+                     style={{ width:"100%", aspectRatio:"3/4", objectFit:"cover", display:"block" }} />
             ── */}
             <div style={{
-              width: "100%", maxWidth: "260px", height: "320px",
+              width: "100%", aspectRatio: "3/4",
               background: "#EDECE8", border: "1px dashed #C8C6C0",
               display: "flex", flexDirection: "column",
               alignItems: "center", justifyContent: "center", gap: "0.8rem",

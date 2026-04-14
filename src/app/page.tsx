@@ -8,7 +8,6 @@ import Footer from "@/components/sections/Footer";
 const navLinks = [
   { label: "Portfolio", href: "top" },
   { label: "Expérience", href: "#experience" },
-  { label: "Compétences", href: "#competences" },
   { label: "Contact", href: "#contact" },
 ];
 
