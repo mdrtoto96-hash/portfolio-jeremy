@@ -49,7 +49,7 @@ export default function Experience() {
       ref={ref}
       className="w-full"
       style={{
-        padding: "7rem 2rem",
+        padding: "7rem 0",
         borderTop: "1px solid #E5E4DF",
       }}
     >
@@ -110,6 +110,7 @@ export default function Experience() {
 
         {/* Compétences */}
         <motion.div
+          id="competences"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
