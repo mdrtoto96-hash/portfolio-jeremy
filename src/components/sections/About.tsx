@@ -3,144 +3,128 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const skills = [
-  "Direction de la photographie",
-  "Colorimétrie DaVinci Resolve",
-  "Montage Premiere Pro",
-  "Motion Design After Effects",
-  "Tournage drone",
-  "Son et mixage",
-  "Direction artistique",
-  "Production exécutive",
-];
-
 export default function About() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-20%" });
+  const inView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section id="about" ref={ref} className="py-32 px-6 md:px-12 border-t border-[rgba(255,255,255,0.06)]">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-20">
-          <div className="w-6 h-px bg-[#c9a84c]" />
-          <span className="text-[#c9a84c] text-[9px] tracking-[0.5em] uppercase">04</span>
-        </div>
+    <section
+      id="about"
+      ref={ref}
+      style={{ paddingTop: "5rem", paddingBottom: "5rem", borderTop: "1px solid #E5E4DF" }}
+    >
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "200px 1fr",
+        gap: "4rem",
+        alignItems: "start",
+      }}>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          {/* Colonne gauche */}
-          <div>
-            <div className="overflow-hidden mb-6">
-              <motion.h2
-                className="font-display text-[clamp(36px,5vw,72px)] font-bold text-[#f0ede8] leading-tight"
-                initial={{ y: "100%" }}
-                animate={inView ? { y: 0 } : {}}
-                transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-              >
-                À propos
-              </motion.h2>
-            </div>
-            <div className="overflow-hidden mb-2">
-              <motion.h2
-                className="font-display text-[clamp(36px,5vw,72px)] font-bold text-transparent leading-tight"
-                style={{ WebkitTextStroke: "1px rgba(240,237,232,0.2)" }}
-                initial={{ y: "100%" }}
-                animate={inView ? { y: 0 } : {}}
-                transition={{ duration: 0.9, delay: 0.08, ease: [0.76, 0, 0.24, 1] }}
-              >
-                de moi
-              </motion.h2>
-            </div>
+        {/* ── Photo ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          style={{ flexShrink: 0 }}
+        >
+          {/*
+            Pour ajouter votre photo, remplacez ce bloc par :
+            <img
+              src="/photo.jpg"
+              alt="Jeremy Rondeau"
+              style={{ width: "200px", height: "260px", objectFit: "cover", display: "block" }}
+            />
+          */}
+          <div style={{
+            width: "200px",
+            height: "260px",
+            background: "#EDECE8",
+            border: "1px dashed #C8C6C0",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.7rem",
+          }}>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#C0BDB7" strokeWidth="0.9">
+              <circle cx="12" cy="8" r="4.5" />
+              <path d="M3 21c0-5 4-8.5 9-8.5s9 3.5 9 8.5" />
+            </svg>
+            <span style={{
+              fontSize: "0.58rem", letterSpacing: "0.12em", color: "#C0BDB7",
+              textTransform: "uppercase", textAlign: "center", lineHeight: 1.6,
+            }}>
+              Votre photo
+            </span>
+          </div>
+        </motion.div>
 
-            {/* Photo placeholder */}
-            <motion.div
-              className="mt-12 relative aspect-[3/4] max-w-sm overflow-hidden"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 1, delay: 0.3 }}
-            >
-              <div className="absolute inset-0 bg-[#111]" />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/80 to-transparent z-10" />
-              {/* Placeholder silhouette */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-[rgba(255,255,255,0.05)] text-center">
-                  <div className="font-display text-8xl font-bold">JR</div>
-                  <div className="text-xs tracking-widest mt-2">Photo ici</div>
-                </div>
-              </div>
-              {/* Bords */}
-              <div className="absolute top-4 left-4 w-10 h-10 border-t-2 border-l-2 border-[#c9a84c] z-20" />
-              <div className="absolute bottom-4 right-4 w-10 h-10 border-b-2 border-r-2 border-[#c9a84c] z-20" />
-              {/* Nom sur la photo */}
-              <div className="absolute bottom-6 left-6 z-20">
-                <p className="font-display text-lg font-bold text-[#f0ede8]">Jeremy Rondeau</p>
-                <p className="text-[#c9a84c] text-[9px] tracking-[0.4em] uppercase mt-1">Vidéaste & Réalisateur</p>
-              </div>
-            </motion.div>
+        {/* ── Texte de motivation ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15 }}
+        >
+          <p style={{
+            fontFamily: "var(--font-playfair)", fontStyle: "italic",
+            fontSize: "clamp(1.6rem, 2.5vw, 2.2rem)", fontWeight: 400,
+            color: "#0D0D0D", marginBottom: "2rem",
+          }}>
+            À propos
+          </p>
+
+          {/*
+            ── TEXTE DE MOTIVATION ──
+            Remplacez ce texte par votre propre présentation.
+            Conseils :
+            - Paragraphe 1 : qui vous êtes, votre passion pour l'image
+            - Paragraphe 2 : votre expérience et ce qui vous différencie
+            - Paragraphe 3 : ce que vous recherchez (poste en agence)
+          */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
+            <p style={{ fontSize: "0.9rem", lineHeight: 1.85, color: "#444" }}>
+              Passionné par l&apos;image depuis mon plus jeune âge, j&apos;ai construit mon parcours autour
+              d&apos;une conviction simple : chaque histoire mérite d&apos;être racontée avec soin et précision.
+              Le cadre, la lumière, le montage — chaque détail compte pour créer une émotion juste.
+            </p>
+            <p style={{ fontSize: "0.9rem", lineHeight: 1.85, color: "#444" }}>
+              Après plusieurs années à travailler sur des projets variés — clips musicaux, films publicitaires,
+              documentaires — j&apos;ai développé une vraie sensibilité visuelle et la capacité de m&apos;adapter
+              à des univers créatifs très différents, tout en apportant ma propre vision.
+            </p>
+            <p style={{ fontSize: "0.9rem", lineHeight: 1.85, color: "#444" }}>
+              Je suis aujourd&apos;hui à la recherche d&apos;un poste de vidéaste au sein d&apos;une agence de
+              communication pour mettre mes compétences au service de projets ambitieux et continuer
+              à évoluer dans un environnement stimulant.
+            </p>
           </div>
 
-          {/* Colonne droite */}
-          <div className="flex flex-col justify-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              {/* Citation */}
-              <div className="mb-10 pl-6 border-l-2 border-[#c9a84c]">
-                <p className="font-display text-xl md:text-2xl text-[#f0ede8] leading-relaxed italic">
-                  "Chaque projet est une histoire à raconter. Mon rôle est de trouver la meilleure façon de la mettre en images."
+          {/* Infos pratiques */}
+          <div style={{
+            marginTop: "2.5rem",
+            paddingTop: "1.5rem",
+            borderTop: "1px solid #E5E4DF",
+            display: "flex",
+            gap: "3rem",
+            flexWrap: "wrap",
+          }}>
+            {[
+              { label: "Localisation", value: "Paris, France" },
+              { label: "Disponibilité", value: "Immédiate" },
+              { label: "Mobilité", value: "France & International" },
+            ].map((item) => (
+              <div key={item.label}>
+                <p style={{ fontSize: "0.62rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#bbb", marginBottom: "0.3rem" }}>
+                  {item.label}
+                </p>
+                <p style={{ fontSize: "0.85rem", color: "#0D0D0D" }}>
+                  {item.value}
                 </p>
               </div>
-
-              {/* Bio */}
-              <div className="space-y-4 text-[#6b6b6b] text-sm leading-relaxed mb-12">
-                <p>
-                  Vidéaste et réalisateur passionné, je travaille depuis plus de 8 ans dans l'image.
-                  Formé à l'École de l'Image, j'ai développé un style reconnaissable :
-                  cinématographique, émotionnel et ancré dans le réel.
-                </p>
-                <p>
-                  J'interviens sur des projets variés — clips musicaux, publicités, courts-métrages,
-                  documentaires et films d'entreprise — avec toujours la même exigence visuelle.
-                </p>
-                <p>
-                  Basé à Paris, disponible partout en France et à l'international.
-                </p>
-              </div>
-
-              {/* Skills */}
-              <div className="mb-12">
-                <p className="text-[9px] tracking-[0.5em] uppercase text-[#c9a84c] mb-6">Compétences</p>
-                <div className="grid grid-cols-2 gap-3">
-                  {skills.map((skill, i) => (
-                    <motion.div
-                      key={skill}
-                      className="flex items-center gap-2 text-[11px] text-[#6b6b6b] tracking-wide"
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.5, delay: 0.5 + i * 0.06 }}
-                    >
-                      <span className="w-1 h-1 bg-[#c9a84c] rounded-full flex-shrink-0" />
-                      {skill}
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Équipement */}
-              <div className="pt-8 border-t border-[rgba(255,255,255,0.06)]">
-                <p className="text-[9px] tracking-[0.5em] uppercase text-[#c9a84c] mb-4">Équipement principal</p>
-                <p className="text-[#6b6b6b] text-[11px] leading-relaxed">
-                  Sony A7S III / Sony FX3 — DJI Ronin 4D — Sigma Art — Sony G Master
-                  <br />
-                  DJI Mavic 3 Cine — Aputure 600D — DaVinci Resolve Studio
-                </p>
-              </div>
-            </motion.div>
+            ))}
           </div>
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );

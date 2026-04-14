@@ -44,13 +44,14 @@ export default function Experience() {
   const inView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section id="experience" ref={ref} style={{ paddingTop: "5rem", paddingBottom: "6rem", borderTop: "1px solid #E5E4DF" }}>
-
-      {/* ── Deux colonnes avec séparateur vertical ── */}
+    <section
+      id="experience"
+      ref={ref}
+      style={{ paddingTop: "5rem", paddingBottom: "6rem", borderTop: "1px solid #E5E4DF" }}
+    >
       <div style={{
         display: "grid",
-        gridTemplateColumns: "minmax(0, 1.6fr) 1px minmax(0, 1fr)",
-        gap: "0",
+        gridTemplateColumns: "minmax(0, 1.7fr) 1px minmax(0, 1fr)",
         alignItems: "start",
       }}>
 
@@ -97,9 +98,9 @@ export default function Experience() {
         </div>
 
         {/* ── Séparateur vertical ── */}
-        <div style={{ background: "#E5E4DF", margin: "0" }} />
+        <div style={{ background: "#E5E4DF", alignSelf: "stretch" }} />
 
-        {/* ── Colonne droite : Photo + Compétences ── */}
+        {/* ── Colonne droite : Compétences ── */}
         <motion.div
           id="competences"
           initial={{ opacity: 0, y: 14 }}
@@ -107,37 +108,10 @@ export default function Experience() {
           transition={{ duration: 0.5, delay: 0.2 }}
           style={{ paddingLeft: "4rem" }}
         >
-
-          {/* Photo */}
-          <div style={{ marginBottom: "2.5rem" }}>
-            {/* ── Remplacez ce bloc par votre photo :
-                <img src="/photo.jpg" alt="Jeremy Rondeau"
-                     style={{ width:"100%", aspectRatio:"3/4", objectFit:"cover", display:"block" }} />
-            ── */}
-            <div style={{
-              width: "100%", aspectRatio: "3/4",
-              background: "#EDECE8", border: "1px dashed #C8C6C0",
-              display: "flex", flexDirection: "column",
-              alignItems: "center", justifyContent: "center", gap: "0.8rem",
-            }}>
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C0BDB7" strokeWidth="0.9">
-                <circle cx="12" cy="8" r="4.5" />
-                <path d="M3 21c0-5 4-8.5 9-8.5s9 3.5 9 8.5" />
-              </svg>
-              <span style={{
-                fontSize: "0.6rem", letterSpacing: "0.14em", color: "#C0BDB7",
-                textTransform: "uppercase", textAlign: "center", lineHeight: 1.6,
-              }}>
-                Votre photo
-              </span>
-            </div>
-          </div>
-
-          {/* Compétences */}
           <p style={{
             fontFamily: "var(--font-playfair)", fontStyle: "italic",
             fontSize: "clamp(1.6rem, 2.5vw, 2.2rem)", fontWeight: 400,
-            color: "#0D0D0D", marginBottom: "1.5rem",
+            color: "#0D0D0D", marginBottom: "2rem",
           }}>
             Compétences
           </p>

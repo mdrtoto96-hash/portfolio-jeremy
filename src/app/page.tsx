@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Portfolio from "@/components/sections/Portfolio";
+import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
 import Footer from "@/components/sections/Footer";
 
 const navLinks = [
   { label: "Portfolio", href: "top" },
+  { label: "À propos", href: "#about" },
   { label: "Expérience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
@@ -27,10 +29,10 @@ export default function Home() {
 
   return (
     <>
-      {/* Barre sticky minimale — apparaît seulement après le scroll */}
+      {/* Barre sticky — apparaît au scroll */}
       <div style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-        transition: "all 0.4s",
+        transition: "opacity 0.4s",
         opacity: scrolled ? 1 : 0,
         pointerEvents: scrolled ? "auto" : "none",
         background: "rgba(250,250,248,0.96)",
@@ -39,8 +41,7 @@ export default function Home() {
       }}>
         <div style={{
           maxWidth: "1400px", margin: "0 auto", padding: "0 3rem",
-          height: "52px", display: "flex", alignItems: "center",
-          justifyContent: "space-between",
+          height: "52px", display: "flex", alignItems: "center", justifyContent: "space-between",
         }}>
           <button onClick={() => go("top")} style={{
             fontFamily: "var(--font-playfair)", fontStyle: "italic",
@@ -86,13 +87,13 @@ export default function Home() {
             Vidéaste
           </p>
 
-          {/* Liens de navigation — sous le nom */}
+          {/* Liens sous le nom */}
           <div style={{ display: "flex", gap: "2rem", marginTop: "1.6rem", flexWrap: "wrap" }}>
             {navLinks.map((l) => (
               <button key={l.href} onClick={() => go(l.href)} style={{
                 fontSize: "0.78rem", letterSpacing: "0.06em", color: "#555",
                 background: "none", border: "none", cursor: "pointer",
-                transition: "color 0.2s", padding: 0,
+                transition: "color 0.2s, border-color 0.2s", padding: "0 0 2px 0",
                 borderBottom: "1px solid transparent",
               }}
                 onMouseEnter={(e) => {
@@ -111,6 +112,7 @@ export default function Home() {
         </div>
 
         <Portfolio />
+        <About />
         <Experience />
         <Footer />
       </div>
