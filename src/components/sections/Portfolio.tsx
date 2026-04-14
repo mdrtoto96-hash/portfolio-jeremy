@@ -377,7 +377,7 @@ export default function Portfolio() {
 
   return (
     <>
-      <section id="portfolio" ref={ref} style={{ width: "100%", paddingTop: "6rem", paddingBottom: "6rem" }}>
+      <section id="portfolio" ref={ref} style={{ width: "100%", paddingTop: "2.5rem", paddingBottom: "5rem" }}>
         {/* Titre */}
         <div
           style={{
