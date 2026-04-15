@@ -60,14 +60,14 @@ export default function Experience() {
       ref={ref}
       style={{ paddingTop: "5rem", paddingBottom: "6rem" }}
     >
-      <div style={{
+      <div className="exp-grid" style={{
         display: "grid",
         gridTemplateColumns: "minmax(0, 1.7fr) 1px minmax(0, 1fr)",
         alignItems: "start",
       }}>
 
         {/* ── Colonne gauche : Timeline ── */}
-        <div style={{ paddingRight: "4rem" }}>
+        <div className="exp-left" style={{ paddingRight: "4rem" }}>
           <p style={{
             fontFamily: "var(--font-playfair)", fontStyle: "italic",
             fontSize: "clamp(2rem, 2.8vw, 3.2rem)", fontWeight: 400,
@@ -155,11 +155,12 @@ export default function Experience() {
         </div>
 
         {/* ── Séparateur vertical ── */}
-        <div style={{ background: "rgba(240,237,232,0.1)", alignSelf: "stretch" }} />
+        <div className="exp-divider" style={{ background: "rgba(240,237,232,0.1)", alignSelf: "stretch" }} />
 
         {/* ── Colonne droite : Compétences ── */}
         <motion.div
           id="competences"
+          className="exp-right"
           initial={{ opacity: 0, y: 14 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}

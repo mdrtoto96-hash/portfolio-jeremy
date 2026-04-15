@@ -29,7 +29,7 @@ export default function About() {
         À propos
       </p>
 
-      <div style={{
+      <div className="about-grid" style={{
         display: "grid",
         gridTemplateColumns: "360px 1fr",
         gap: "5rem",
@@ -38,6 +38,7 @@ export default function About() {
 
         {/* ── Photo ── */}
         <motion.div
+          className="about-photo-wrap"
           initial={{ opacity: 0, y: 14 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -45,6 +46,7 @@ export default function About() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            className="about-photo-img"
             src="/images/photo-jeremy-.jpg"
             alt="Jeremy Rondeau"
             onClick={() => setLightbox(true)}

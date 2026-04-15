@@ -70,7 +70,7 @@ export default function Home() {
         backdropFilter: "blur(16px)",
         borderBottom: "1px solid rgba(240,237,232,0.08)",
       }}>
-        <div style={{
+        <div className="mob-pad" style={{
           width: W, maxWidth: MAX, margin: "0 auto", padding: PAD,
           height: `${NAV_H}px`, display: "flex", alignItems: "center", justifyContent: "space-between",
         }}>
@@ -80,7 +80,7 @@ export default function Home() {
           }}>
             Jeremy Rondeau
           </button>
-          <div style={{ display: "flex", gap: "2.8rem" }}>
+          <div className="nav-links-sticky" style={{ display: "flex", gap: "2.8rem" }}>
             {navLinks.map((l) => (
               <button key={l.href} onClick={() => go(l.href)}
                 style={NAV_BTN}
@@ -122,7 +122,7 @@ export default function Home() {
           }}>Jeremy Rondeau</h1>
 
           {/* Nav links */}
-          <div className="hero-t3" style={{
+          <div className="hero-t3 hero-nav-links" style={{
             display: "flex", gap: "2.5rem", marginTop: "3rem",
             justifyContent: "center",
           }}>
@@ -153,7 +153,7 @@ export default function Home() {
       </div>
 
       {/* ── Sections ── */}
-      <div style={{ width: W, maxWidth: MAX, margin: "0 auto", padding: PAD }}>
+      <div className="mob-pad" style={{ width: W, maxWidth: MAX, margin: "0 auto", padding: PAD }}>
         <Portfolio />
         <About />
         <Experience />

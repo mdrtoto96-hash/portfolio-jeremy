@@ -99,3 +99,58 @@ html, body {
   50%       { opacity: 0.35; }
 }
 .contact-blink { animation: contactBlink 2.8s ease-in-out infinite; }
+
+/* ── Tactile : désactive le curseur personnalisé ── */
+@media (pointer: coarse) {
+  *, *::before, *::after { cursor: auto !important; }
+  .cursor-dot, .cursor-ring { display: none !important; }
+}
+
+/* ── Mobile (≤ 768 px) ── */
+@media (max-width: 768px) {
+  /* Padding latéral réduit */
+  .mob-pad {
+    padding-left: 1.4rem !important;
+    padding-right: 1.4rem !important;
+  }
+
+  /* Sticky nav : masque les liens, garde juste le nom */
+  .nav-links-sticky { display: none !important; }
+
+  /* Hero nav links : empile verticalement */
+  .hero-nav-links {
+    flex-direction: column !important;
+    gap: 1.2rem !important;
+    align-items: center !important;
+    margin-top: 2.5rem !important;
+  }
+
+  /* About : une seule colonne */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .about-photo-wrap { margin-top: 0 !important; }
+  .about-photo-img  { height: 300px !important; }
+
+  /* Experience : empile les deux colonnes */
+  .exp-grid { grid-template-columns: 1fr !important; }
+  .exp-divider { display: none !important; }
+  .exp-left  { padding-right: 0 !important; }
+  .exp-right {
+    padding-left: 0 !important;
+    padding-top: 3rem !important;
+    border-top: 1px solid rgba(240,237,232,0.1) !important;
+  }
+
+  /* Portfolio : une colonne */
+  .portfolio-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Très petits écrans (≤ 480 px) */
+@media (max-width: 480px) {
+  .mob-pad {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
