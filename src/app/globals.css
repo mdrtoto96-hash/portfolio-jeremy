@@ -114,15 +114,24 @@ html, body {
     padding-right: 1.4rem !important;
   }
 
+  /* Sections : padding vertical réduit */
+  .mob-section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
   /* Sticky nav : masque les liens, garde juste le nom */
   .nav-links-sticky { display: none !important; }
 
-  /* Hero nav links : empile verticalement */
+  /* Hero nav : une ligne horizontale */
   .hero-nav-links {
-    flex-direction: column !important;
-    gap: 1.2rem !important;
-    align-items: center !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 1.5rem !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
     margin-top: 2.5rem !important;
+    width: auto !important;
   }
 
   /* About : une seule colonne */
@@ -131,20 +140,41 @@ html, body {
     gap: 2rem !important;
   }
   .about-photo-wrap { margin-top: 0 !important; }
-  .about-photo-img  { height: 300px !important; }
+  /* Cadrage paysage : visage centré */
+  .about-photo-img  {
+    height: 220px !important;
+    aspect-ratio: unset !important;
+    object-position: center 32% !important;
+  }
+
+  /* About : texte légèrement plus petit */
+  .about-text p {
+    font-size: 0.88rem !important;
+    line-height: 1.72 !important;
+  }
 
   /* Experience : empile les deux colonnes */
   .exp-grid { grid-template-columns: 1fr !important; }
   .exp-divider { display: none !important; }
-  .exp-left  { padding-right: 0 !important; }
-  .exp-right {
-    padding-left: 0 !important;
-    padding-top: 3rem !important;
-    border-top: 1px solid rgba(240,237,232,0.1) !important;
+  /* Compétences au-dessus de Parcours sur mobile */
+  .exp-left  { padding-right: 0 !important; order: 2 !important; padding-top: 2.5rem !important; border-top: 1px solid rgba(240,237,232,0.1) !important; }
+  .exp-right { padding-left: 0 !important; order: 1 !important; }
+
+  /* Compétences : 2 colonnes sur mobile */
+  .exp-skills-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 
-  /* Portfolio : une colonne */
-  .portfolio-grid { grid-template-columns: 1fr !important; }
+  /* Footer contact : centré sur mobile */
+  .footer-title   { text-align: center !important; }
+  .footer-contact { align-items: center !important; }
+
+  /* Portfolio : 2 colonnes, cartes plus compactes */
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.9rem !important;
+  }
 }
 
 /* Très petits écrans (≤ 480 px) */
@@ -153,4 +183,7 @@ html, body {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
   }
+  /* Portfolio : titre/année plus petits dans les cartes */
+  .portfolio-grid .card-title { font-size: 0.78rem !important; }
+  .portfolio-grid .card-year  { font-size: 0.65rem !important; }
 }

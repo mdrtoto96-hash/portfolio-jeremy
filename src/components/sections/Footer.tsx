@@ -7,13 +7,13 @@ export default function Footer() {
       id="contact"
       style={{
         width: "100%",
-        paddingTop: "8rem",
-        paddingBottom: "4rem",
+        paddingTop: "4rem",
+        paddingBottom: "3rem",
       }}
     >
       {/* ── Titre Contact qui clignote ── */}
       <h2
-        className="contact-blink"
+        className="contact-blink footer-title"
         style={{
           fontFamily: "var(--font-playfair)",
           fontStyle: "italic",
@@ -21,14 +21,14 @@ export default function Footer() {
           fontWeight: 400,
           color: "#F0EDE8",
           lineHeight: 1,
-          marginBottom: "4rem",
+          marginBottom: "2rem",
         }}
       >
         Contact
       </h2>
 
       {/* ── Infos de contact ── */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "1.4rem", marginBottom: "6rem" }}>
+      <div className="footer-contact" style={{ display: "flex", flexDirection: "column", gap: "1.4rem", marginBottom: "3rem" }}>
         <a
           href="mailto:jrv.production85@gmail.com"
           style={{

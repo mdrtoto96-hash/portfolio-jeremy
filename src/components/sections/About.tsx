@@ -13,6 +13,7 @@ export default function About() {
     <section
       id="about"
       ref={ref}
+      className="mob-section"
       style={{
         paddingTop: "5rem",
         paddingBottom: "5rem",
@@ -71,7 +72,7 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.15 }}
           style={{ minWidth: 0 }}
         >
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem", maxWidth: "620px" }}>
+          <div className="about-text" style={{ display: "flex", flexDirection: "column", gap: "1.2rem", maxWidth: "620px" }}>
             <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "rgba(240,237,232,0.6)" }}>
               Salut, moi c&apos;est Jérémy. Je suis vidéaste depuis un an et demi et j&apos;adore vraiment
               ce métier. Pour moi, la vidéo est magique car elle permet de partager des émotions et des

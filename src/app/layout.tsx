@@ -18,14 +18,22 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://portfolio-jeremy-lemon.vercel.app"
+  ),
   title: "Jeremy Rondeau — Vidéaste",
-  description: "Portfolio de Jeremy Rondeau, vidéaste professionnel. Clips, publicités, documentaires.",
+  description: "Portfolio de Jeremy Rondeau, vidéaste en Vendée. Films d'entreprise, événementiel, publicité. Disponible immédiatement.",
   authors: [{ name: "Jeremy Rondeau" }],
   openGraph: {
     title: "Jeremy Rondeau — Vidéaste",
-    description: "Vidéaste professionnel — Je transforme vos idées en images.",
+    description: "Films d'entreprise, événementiel, publicité — Vendée, Pays de la Loire.",
     type: "website",
     locale: "fr_FR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jeremy Rondeau — Vidéaste",
+    description: "Films d'entreprise, événementiel, publicité — Vendée, Pays de la Loire.",
   },
 };
 

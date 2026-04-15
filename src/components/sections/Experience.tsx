@@ -58,7 +58,8 @@ export default function Experience() {
     <section
       id="experience"
       ref={ref}
-      style={{ paddingTop: "5rem", paddingBottom: "6rem" }}
+      className="mob-section"
+      style={{ paddingTop: "5rem", paddingBottom: "3rem" }}
     >
       <div className="exp-grid" style={{
         display: "grid",
@@ -174,23 +175,25 @@ export default function Experience() {
             Compétences
           </p>
 
-          {skills.map((s, i) => (
-            <motion.div
-              key={s}
-              initial={{ opacity: 0, x: -8 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.3 + i * 0.07 }}
-              style={{
-                padding: "0.9rem 0",
-                borderBottom: "1px solid rgba(240,237,232,0.1)",
-                fontSize: "0.9rem", color: "rgba(240,237,232,0.6)",
-                display: "flex", alignItems: "center", gap: "0.75rem",
-              }}
-            >
-              <span style={{ width: "4px", height: "4px", background: "#E05C3A", borderRadius: "50%", flexShrink: 0 }} />
-              {s}
-            </motion.div>
-          ))}
+          <div className="exp-skills-grid">
+            {skills.map((s, i) => (
+              <motion.div
+                key={s}
+                initial={{ opacity: 0, x: -8 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.3 + i * 0.07 }}
+                style={{
+                  padding: "0.9rem 0",
+                  borderBottom: "1px solid rgba(240,237,232,0.1)",
+                  fontSize: "0.9rem", color: "rgba(240,237,232,0.6)",
+                  display: "flex", alignItems: "center", gap: "0.75rem",
+                }}
+              >
+                <span style={{ width: "4px", height: "4px", background: "#E05C3A", borderRadius: "50%", flexShrink: 0 }} />
+                {s}
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
 
       </div>

@@ -238,6 +238,7 @@ function VideoCard({
       {/* Info sous la carte */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
         <span
+          className="card-title"
           style={{
             fontSize: "0.95rem",
             fontWeight: 500,
@@ -249,7 +250,7 @@ function VideoCard({
         >
           {project.title}
         </span>
-        <span style={{ fontSize: "0.75rem", color: "rgba(240,237,232,0.35)" }}>{project.year}</span>
+        <span className="card-year" style={{ fontSize: "0.75rem", color: "rgba(240,237,232,0.35)" }}>{project.year}</span>
       </div>
     </motion.div>
   );

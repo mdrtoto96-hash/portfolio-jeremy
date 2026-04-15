@@ -2,6 +2,3 @@ User-agent: *
 Allow: /
 Disallow: /_next/
 Disallow: /api/
-
-# Sitemap
-Sitemap: https://jeremyrondeau.fr/sitemap.xml
