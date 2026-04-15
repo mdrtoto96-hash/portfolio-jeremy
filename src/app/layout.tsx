@@ -19,7 +19,7 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://rondeaujeremy.fr"
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.rondeaujeremy.fr"
   ),
   title: "Jeremy Rondeau — Vidéaste",
   description: "Portfolio de Jeremy Rondeau, vidéaste en Vendée. Films d'entreprise, événementiel, publicité. Disponible immédiatement.",
@@ -29,11 +29,11 @@ export const metadata: Metadata = {
     description: "Films d'entreprise, événementiel, publicité — Vendée, Pays de la Loire.",
     type: "website",
     locale: "fr_FR",
-    url: "https://rondeaujeremy.fr",
+    url: "https://www.rondeaujeremy.fr",
     siteName: "Jeremy Rondeau",
     images: [
       {
-        url: "/Imagesite.png",
+        url: "https://www.rondeaujeremy.fr/Imagesite.png",
         width: 1200,
         height: 630,
         alt: "Jeremy Rondeau — Vidéaste",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Jeremy Rondeau — Vidéaste",
     description: "Films d'entreprise, événementiel, publicité — Vendée, Pays de la Loire.",
-    images: ["/Imagesite.png"],
+    images: ["https://www.rondeaujeremy.fr/Imagesite.png"],
   },
 };
 
