@@ -59,8 +59,8 @@ export default function Experience() {
         <div style={{ paddingRight: "4rem" }}>
           <p style={{
             fontFamily: "var(--font-playfair)", fontStyle: "italic",
-            fontSize: "clamp(1.6rem, 2.5vw, 2.2rem)", fontWeight: 400,
-            color: "#0D0D0D", marginBottom: "2rem",
+            fontSize: "clamp(2rem, 2.8vw, 3.2rem)", fontWeight: 400,
+            color: "#F0EDE8", marginBottom: "2rem",
           }}>
             Expérience
           </p>
@@ -76,20 +76,20 @@ export default function Experience() {
                 gridTemplateColumns: "120px 1fr",
                 gap: "1.5rem",
                 padding: "1.6rem 0",
-                borderBottom: "1px solid #E5E4DF",
+                borderBottom: "1px solid rgba(240,237,232,0.1)",
               }}
             >
-              <span style={{ fontSize: "0.72rem", color: "#999", letterSpacing: "0.03em", paddingTop: "0.1rem" }}>
+              <span style={{ fontSize: "0.72rem", color: "rgba(240,237,232,0.35)", letterSpacing: "0.03em", paddingTop: "0.1rem" }}>
                 {exp.period}
               </span>
               <div>
-                <p style={{ fontSize: "0.92rem", fontWeight: 500, color: "#0D0D0D", marginBottom: "0.15rem" }}>
+                <p style={{ fontSize: "1rem", fontWeight: 500, color: "#F0EDE8", marginBottom: "0.15rem" }}>
                   {exp.role}
                 </p>
                 <p style={{ fontSize: "0.73rem", color: "#E05C3A", marginBottom: "0.5rem", letterSpacing: "0.04em" }}>
                   {exp.company}
                 </p>
-                <p style={{ fontSize: "0.82rem", color: "#666", lineHeight: 1.7 }}>
+                <p style={{ fontSize: "0.9rem", color: "rgba(240,237,232,0.5)", lineHeight: 1.7 }}>
                   {exp.desc}
                 </p>
               </div>
@@ -98,7 +98,7 @@ export default function Experience() {
         </div>
 
         {/* ── Séparateur vertical ── */}
-        <div style={{ background: "#E5E4DF", alignSelf: "stretch" }} />
+        <div style={{ background: "rgba(240,237,232,0.1)", alignSelf: "stretch" }} />
 
         {/* ── Colonne droite : Compétences ── */}
         <motion.div
@@ -110,8 +110,8 @@ export default function Experience() {
         >
           <p style={{
             fontFamily: "var(--font-playfair)", fontStyle: "italic",
-            fontSize: "clamp(1.6rem, 2.5vw, 2.2rem)", fontWeight: 400,
-            color: "#0D0D0D", marginBottom: "2rem",
+            fontSize: "clamp(2rem, 2.8vw, 3.2rem)", fontWeight: 400,
+            color: "#F0EDE8", marginBottom: "2rem",
           }}>
             Compétences
           </p>
@@ -124,8 +124,8 @@ export default function Experience() {
               transition={{ duration: 0.4, delay: 0.3 + i * 0.07 }}
               style={{
                 padding: "0.9rem 0",
-                borderBottom: "1px solid #E5E4DF",
-                fontSize: "0.83rem", color: "#444",
+                borderBottom: "1px solid rgba(240,237,232,0.1)",
+                fontSize: "0.9rem", color: "rgba(240,237,232,0.6)",
                 display: "flex", alignItems: "center", gap: "0.75rem",
               }}
             >

@@ -1,25 +1,48 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { X } from "lucide-react";
 import Portfolio from "@/components/sections/Portfolio";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
 import Footer from "@/components/sections/Footer";
 
+const W = "100%";
+const MAX = "1520px";
+const PAD = "0 5rem";
+const NAV_H = 52;
+
 const navLinks = [
-  { label: "Portfolio", href: "top" },
-  { label: "À propos", href: "#about" },
+  { label: "Portfolio",  href: "#portfolio" },
+  { label: "À propos",  href: "#about" },
   { label: "Expérience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact",   href: "#contact" },
 ];
 
 function go(href: string) {
-  if (href === "top") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
-  document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+  if (href === "#top") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+  if (href === "#contact") { window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }); return; }
+  const el = document.querySelector(href);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - NAV_H;
+  window.scrollTo({ top, behavior: "smooth" });
 }
 
+const NAV_BTN: React.CSSProperties = {
+  fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase",
+  color: "rgba(240,237,232,0.4)", background: "none", border: "none",
+  cursor: "none", transition: "color 0.2s", padding: 0,
+};
+
 export default function Home() {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled,  setScrolled]  = useState(false);
+  const [showreel,  setShowreel]  = useState(false);
+
+  // Toujours revenir en haut au chargement
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 80);
@@ -27,144 +50,221 @@ export default function Home() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
+  // Fermer le showreel avec Échap
+  useEffect(() => {
+    const fn = (e: KeyboardEvent) => { if (e.key === "Escape") setShowreel(false); };
+    window.addEventListener("keydown", fn);
+    return () => window.removeEventListener("keydown", fn);
+  }, []);
+
   return (
-    <>
-      {/* ── Barre sticky au scroll ── */}
+    <div id="top" style={{ background: "#0D0D0D", minHeight: "100vh" }}>
+
+      {/* ── Barre sticky ── */}
       <div style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
         transition: "opacity 0.4s",
         opacity: scrolled ? 1 : 0,
         pointerEvents: scrolled ? "auto" : "none",
-        background: "rgba(250,250,248,0.96)",
-        backdropFilter: "blur(12px)",
-        borderBottom: "1px solid #E5E4DF",
+        background: "rgba(13,13,13,0.92)",
+        backdropFilter: "blur(16px)",
+        borderBottom: "1px solid rgba(240,237,232,0.08)",
       }}>
         <div style={{
-          maxWidth: "1400px", margin: "0 auto", padding: "0 3rem",
-          height: "52px", display: "flex", alignItems: "center", justifyContent: "space-between",
+          width: W, maxWidth: MAX, margin: "0 auto", padding: PAD,
+          height: `${NAV_H}px`, display: "flex", alignItems: "center", justifyContent: "space-between",
         }}>
-          <button onClick={() => go("top")} style={{
+          <button onClick={() => go("#top")} style={{
             fontFamily: "var(--font-playfair)", fontStyle: "italic",
-            fontSize: "1rem", color: "#0D0D0D", background: "none", border: "none", cursor: "pointer",
+            fontSize: "1.05rem", color: "#F0EDE8", background: "none", border: "none",
           }}>
             Jeremy Rondeau
           </button>
-          <div style={{ display: "flex", gap: "2rem" }}>
+          <div style={{ display: "flex", gap: "2.8rem" }}>
             {navLinks.map((l) => (
-              <button key={l.href} onClick={() => go(l.href)} style={{
-                fontSize: "0.73rem", letterSpacing: "0.07em", color: "#888",
-                background: "none", border: "none", cursor: "pointer", transition: "color 0.2s",
-              }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#0D0D0D")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}
-              >
-                {l.label}
-              </button>
+              <button key={l.href} onClick={() => go(l.href)}
+                style={NAV_BTN}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#F0EDE8")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.4)")}
+              >{l.label}</button>
             ))}
           </div>
         </div>
       </div>
 
-      {/* ── HERO PLEIN ÉCRAN AVEC ZOOM ── */}
-      <div style={{
-        width: "100%",
-        height: "100vh",
-        overflow: "hidden",
-        position: "relative",
-        background: "#0D0D0D",
-      }}>
-        {/* Fond qui zoome */}
-        <div
-          className="hero-zoom"
-          style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(160deg, #1a1a18 0%, #0D0D0D 60%, #111110 100%)",
-          }}
-        />
-
-        {/* Grain subtil */}
-        <div style={{
+      {/* ── HERO ── */}
+      <div style={{ width: W, height: "100vh", overflow: "hidden", position: "relative" }}>
+        <div className="hero-zoom" style={{
           position: "absolute", inset: 0,
+          background: "linear-gradient(160deg, #181816 0%, #0D0D0D 60%)",
+        }} />
+        <div style={{
+          position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.03,
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
           backgroundSize: "200px",
-          opacity: 0.025,
-          pointerEvents: "none",
         }} />
 
-        {/* Contenu centré */}
         <div style={{
-          position: "relative", zIndex: 10,
-          height: "100%",
-          display: "flex", flexDirection: "column",
-          alignItems: "center", justifyContent: "center",
-          textAlign: "center", gap: "0",
+          position: "relative", zIndex: 10, height: "100%",
+          display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
         }}>
+          <p className="hero-t1" style={{
+            fontSize: "0.6rem", letterSpacing: "0.3em",
+            textTransform: "uppercase", color: "rgba(240,237,232,0.3)",
+            marginBottom: "2rem",
+          }}>Vidéaste — Paris</p>
 
-          {/* Tag */}
-          <p className="hero-text-1" style={{
-            fontSize: "0.65rem", letterSpacing: "0.3em",
-            textTransform: "uppercase", color: "rgba(255,255,255,0.35)",
-            marginBottom: "1.6rem",
-          }}>
-            Vidéaste — Paris
-          </p>
-
-          {/* Nom */}
-          <h1 className="hero-text-2" style={{
+          <h1 className="hero-t2" style={{
             fontFamily: "var(--font-playfair)", fontStyle: "italic",
-            fontSize: "clamp(3rem, 8vw, 7.5rem)", fontWeight: 400,
-            lineHeight: 0.95, color: "#FAFAF8",
-            letterSpacing: "0.01em",
-          }}>
-            Jeremy Rondeau
-          </h1>
+            fontSize: "clamp(3.5rem, 7vw, 9.5rem)", fontWeight: 400,
+            lineHeight: 1, color: "#F0EDE8", letterSpacing: "0.01em",
+            textAlign: "center",
+          }}>Jeremy Rondeau</h1>
 
-          {/* Liens nav */}
-          <div className="hero-text-3" style={{
-            display: "flex", gap: "2.5rem", marginTop: "3rem", flexWrap: "wrap", justifyContent: "center",
+          {/* Nav links */}
+          <div className="hero-t3" style={{
+            display: "flex", gap: "2.5rem", marginTop: "3rem",
+            justifyContent: "center",
           }}>
             {navLinks.map((l) => (
-              <button key={l.href} onClick={() => go(l.href)} style={{
-                fontSize: "0.72rem", letterSpacing: "0.12em",
-                textTransform: "uppercase", color: "rgba(255,255,255,0.45)",
-                background: "none", border: "none", cursor: "pointer",
-                transition: "color 0.25s",
-              }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#FAFAF8")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}
-              >
-                {l.label}
-              </button>
+              <button key={l.href} onClick={() => go(l.href)}
+                style={NAV_BTN}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#F0EDE8")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.4)")}
+              >{l.label}</button>
             ))}
           </div>
 
-          {/* Scroll indicator */}
-          <div className="hero-text-4" style={{ marginTop: "5rem" }}>
-            <button onClick={() => go("#portfolio")} style={{
-              display: "flex", flexDirection: "column", alignItems: "center", gap: "0.6rem",
-              color: "rgba(255,255,255,0.25)", background: "none", border: "none", cursor: "pointer",
-              transition: "color 0.25s",
+          {/* Bouton Showreel */}
+          <button
+            className="contact-blink"
+            onClick={() => setShowreel(true)}
+            style={{
+              marginTop: "2.8rem",
+              display: "inline-flex", alignItems: "center", gap: "0.75rem",
+              fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase",
+              color: "rgba(240,237,232,0.55)",
+              background: "none",
+              border: "1px solid rgba(240,237,232,0.18)",
+              padding: "0.65rem 1.6rem",
+              animationDelay: "1.4s",
             }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.25)")}
-            >
-              <span style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>Défiler</span>
-              <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
-                <line x1="6" y1="0" x2="6" y2="20" stroke="currentColor" strokeWidth="1"/>
-                <polyline points="1,14 6,20 11,14" fill="none" stroke="currentColor" strokeWidth="1"/>
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "#F0EDE8";
+              e.currentTarget.style.borderColor = "rgba(240,237,232,0.5)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "rgba(240,237,232,0.55)";
+              e.currentTarget.style.borderColor = "rgba(240,237,232,0.18)";
+            }}
+          >
+            {/* Icône play */}
+            <svg width="8" height="10" viewBox="0 0 8 10" fill="currentColor">
+              <path d="M0 0L8 5L0 10V0Z" />
+            </svg>
+            Showreel
+          </button>
+
+          {/* Chevrons scroll */}
+          <button className="hero-t4" onClick={() => go("#portfolio")} style={{
+            marginTop: "4rem", display: "flex", flexDirection: "column",
+            alignItems: "center", gap: 0,
+            background: "none", border: "none",
+            color: "#F0EDE8",
+          }}>
+            {(["chev-0", "chev-1", "chev-2"] as const).map((cls) => (
+              <svg key={cls} className={cls} width="24" height="14" viewBox="0 0 24 14" fill="none">
+                <path d="M1 1L12 12L23 1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </button>
-          </div>
+            ))}
+          </button>
         </div>
       </div>
 
-      {/* ── Contenu sous le hero ── */}
-      <div id="portfolio" style={{ width: "100%", maxWidth: "1400px", margin: "0 auto", padding: "0 3rem" }}>
+      {/* ── Sections ── */}
+      <div style={{ width: W, maxWidth: MAX, margin: "0 auto", padding: PAD }}>
         <Portfolio />
         <About />
         <Experience />
         <Footer />
       </div>
-    </>
+
+      {/* ── Modal Showreel ── */}
+      {showreel && (
+        <div
+          onClick={() => setShowreel(false)}
+          style={{
+            position: "fixed", inset: 0, zIndex: 9999,
+            background: "rgba(13,13,13,0.97)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            padding: "3rem",
+          }}
+        >
+          {/* Fermer */}
+          <button
+            onClick={() => setShowreel(false)}
+            style={{
+              position: "absolute", top: "2rem", right: "2rem",
+              background: "none", border: "none",
+              color: "rgba(240,237,232,0.5)",
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#F0EDE8")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.5)")}
+          >
+            <X size={22} strokeWidth={1.2} />
+          </button>
+
+          {/* Lecteur */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{ width: "100%", maxWidth: "1100px" }}
+          >
+            <div style={{
+              aspectRatio: "16/9",
+              background: "#0a0a0a",
+              border: "1px solid rgba(240,237,232,0.07)",
+              display: "flex", flexDirection: "column",
+              alignItems: "center", justifyContent: "center",
+              gap: "1rem",
+            }}>
+              {/*
+                ── Pour ajouter le showreel ──
+                Remplacez ce bloc par :
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/VOTRE_ID?autoplay=1"
+                  style={{ position:"absolute", inset:0, width:"100%", height:"100%", border:"none" }}
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                />
+              */}
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="24" r="23" stroke="rgba(240,237,232,0.12)" strokeWidth="1"/>
+                <path d="M20 16L34 24L20 32V16Z" fill="rgba(240,237,232,0.2)"/>
+              </svg>
+              <p style={{
+                fontSize: "0.62rem", letterSpacing: "0.2em",
+                textTransform: "uppercase", color: "rgba(240,237,232,0.2)",
+              }}>
+                Showreel à venir
+              </p>
+            </div>
+
+            <div style={{
+              display: "flex", justifyContent: "space-between",
+              padding: "1rem 0 0",
+              fontSize: "0.72rem",
+            }}>
+              <span style={{
+                fontFamily: "var(--font-playfair)", fontStyle: "italic",
+                color: "rgba(240,237,232,0.5)",
+              }}>Jeremy Rondeau — Showreel</span>
+              <span style={{ color: "rgba(240,237,232,0.2)", letterSpacing: "0.08em" }}>2024</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+    </div>
   );
 }

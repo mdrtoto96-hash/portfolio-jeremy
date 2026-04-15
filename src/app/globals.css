@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #FAFAF8;
-  --fg: #0D0D0D;
+  --bg: #0D0D0D;
+  --fg: #F0EDE8;
+  --muted: rgba(240,237,232,0.4);
+  --border: rgba(240,237,232,0.1);
   --accent: #E05C3A;
-  --muted: #888;
-  --border: #E5E4DF;
+  --card: #141414;
 }
 
 @theme inline {
@@ -15,11 +16,7 @@
   --font-display: var(--font-playfair);
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
   width: 100%;
@@ -31,16 +28,12 @@ html, body {
   overflow-x: hidden;
 }
 
-::selection {
-  background: var(--fg);
-  color: var(--bg);
-}
-
-::-webkit-scrollbar { width: 3px; }
+::selection { background: var(--fg); color: var(--bg); }
+::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--fg); }
+::-webkit-scrollbar-thumb { background: rgba(240,237,232,0.2); }
 
-/* Zoom hero */
+/* ── Animations hero ── */
 @keyframes heroZoom {
   from { transform: scale(1.07); }
   to   { transform: scale(1.0); }
@@ -49,12 +42,60 @@ html, body {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+.hero-zoom  { animation: heroZoom 2.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards; will-change: transform; }
+.hero-t1    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.3s both; }
+.hero-t2    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.5s both; }
+.hero-t3    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.75s both; }
+.hero-t4    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 1.0s both; }
 
-.hero-zoom {
-  animation: heroZoom 2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+/* ── Scroll indicator (chevrons cascade) ── */
+@keyframes chevronCascade {
+  0%, 100% { opacity: 0.08; transform: translateY(0); }
+  40%       { opacity: 0.75; transform: translateY(3px); }
+  80%       { opacity: 0.08; transform: translateY(0); }
+}
+.chev-0 { animation: chevronCascade 1.8s ease-in-out infinite 0s; }
+.chev-1 { animation: chevronCascade 1.8s ease-in-out infinite 0.22s; }
+.chev-2 { animation: chevronCascade 1.8s ease-in-out infinite 0.44s; }
+
+/* ── Curseur personnalisé ── */
+*, *::before, *::after { cursor: none !important; }
+/* Plein écran : restitue le curseur natif pour les contrôles vidéo */
+:fullscreen, :fullscreen *, :fullscreen *::before, :fullscreen *::after { cursor: auto !important; }
+:-webkit-full-screen, :-webkit-full-screen *, :-webkit-full-screen *::before, :-webkit-full-screen *::after { cursor: auto !important; }
+:-moz-full-screen, :-moz-full-screen *, :-moz-full-screen *::before, :-moz-full-screen *::after { cursor: auto !important; }
+.cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  background: #F0EDE8;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease, opacity 0.2s ease;
   will-change: transform;
 }
-.hero-text-1 { animation: fadeUp 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) 0.3s both; }
-.hero-text-2 { animation: fadeUp 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) 0.5s both; }
-.hero-text-3 { animation: fadeUp 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) 0.7s both; }
-.hero-text-4 { animation: fadeUp 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) 0.9s both; }
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(240,237,232,0.35);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999998;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, transform 0.12s ease;
+  will-change: transform;
+}
+.cursor-ring.hovering {
+  width: 60px; height: 60px;
+  border-color: rgba(240,237,232,0.7);
+}
+
+/* ── Contact blink ── */
+@keyframes contactBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+.contact-blink { animation: contactBlink 2.8s ease-in-out infinite; }

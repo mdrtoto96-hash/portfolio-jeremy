@@ -16,51 +16,51 @@ import { X } from "lucide-react";
 const projects = [
   {
     id: 1,
-    title: "Lumières de Minuit",
-    category: "Clip Musical",
-    year: "2024",
-    videoUrl: "", // ex: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-    thumbnail: "",
+    title: "Atelier Auzance",
+    category: "Film d'entreprise",
+    year: "2026",
+    videoUrl: "/videos/atelier-auzance-2026.mp4",
+    thumbnail: "/images/atelier-auzance-2026.png",
   },
   {
     id: 2,
-    title: "Urban Soul",
-    category: "Publicité",
-    year: "2024",
-    videoUrl: "",
-    thumbnail: "",
+    title: "La Petite Conv / Le Grand Duc",
+    category: "Événementiel",
+    year: "2026",
+    videoUrl: "/videos/laptiteconv_le-grand-duc-.mp4",
+    thumbnail: "/images/laptiteconv_le-grand-duc-2026-.png",
   },
   {
     id: 3,
-    title: "Fragments",
-    category: "Court-métrage",
-    year: "2023",
-    videoUrl: "",
-    thumbnail: "",
+    title: "Délices & Services",
+    category: "Film d'entreprise",
+    year: "2025",
+    videoUrl: "/videos/delices-et-sevices-officiel.mp4",
+    thumbnail: "/images/delice-et-services.png",
   },
   {
     id: 4,
-    title: "Resonance",
-    category: "Documentaire",
-    year: "2023",
-    videoUrl: "",
-    thumbnail: "",
+    title: "Les Jardins des Pagus",
+    category: "Publicité",
+    year: "2025",
+    videoUrl: "/videos/les-jardins-des-pagus-2025-.mp4",
+    thumbnail: "/images/les-jardins-des-pagus-2025-.png",
   },
   {
     id: 5,
-    title: "Horizons",
-    category: "Film d'entreprise",
-    year: "2023",
-    videoUrl: "",
-    thumbnail: "",
+    title: "La Nuit Sans Fin",
+    category: "Événementiel",
+    year: "2025",
+    videoUrl: "/videos/la-nuits-sans-fin-2025-.mp4",
+    thumbnail: "/images/las-nuits-sans-fin.png",
   },
   {
     id: 6,
-    title: "Echo",
-    category: "Clip Musical",
-    year: "2022",
-    videoUrl: "",
-    thumbnail: "",
+    title: "Élémente Experience",
+    category: "Événementiel",
+    year: "2025",
+    videoUrl: "/videos/elemente-experience-2025.mp4",
+    thumbnail: "/images/elemente-experience-2025.jpg",
   },
 ];
 
@@ -124,7 +124,7 @@ function VideoCard({
         style={{
           position: "relative",
           aspectRatio: "16/9",
-          background: "#EDECE8",
+          background: "#1A1A1A",
           overflow: "hidden",
           borderRadius: "2px",
         }}
@@ -206,7 +206,7 @@ function VideoCard({
                 fontSize: "0.65rem",
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
-                color: "#bbb",
+                color: "rgba(240,237,232,0.2)",
                 opacity: hovered ? 0 : 1,
                 transition: "opacity 0.2s",
               }}
@@ -225,8 +225,8 @@ function VideoCard({
             fontSize: "0.6rem",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
-            color: "#888",
-            background: "rgba(250,250,248,0.9)",
+            color: "rgba(240,237,232,0.5)",
+            background: "rgba(13,13,13,0.75)",
             padding: "0.2rem 0.5rem",
             backdropFilter: "blur(4px)",
           }}
@@ -241,7 +241,7 @@ function VideoCard({
           style={{
             fontSize: "0.95rem",
             fontWeight: 500,
-            color: "#0D0D0D",
+            color: "#F0EDE8",
             letterSpacing: "-0.01em",
             transition: "color 0.2s",
             ...(hovered ? { color: "#E05C3A" } : {}),
@@ -249,7 +249,7 @@ function VideoCard({
         >
           {project.title}
         </span>
-        <span style={{ fontSize: "0.75rem", color: "#bbb" }}>{project.year}</span>
+        <span style={{ fontSize: "0.75rem", color: "rgba(240,237,232,0.35)" }}>{project.year}</span>
       </div>
     </motion.div>
   );
@@ -267,6 +267,8 @@ function VideoModal({
 
   const embedUrl = project.videoUrl ? toEmbedUrl(project.videoUrl) : "";
   const local = project.videoUrl ? isLocalVideo(project.videoUrl) : false;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   return (
     <AnimatePresence>
@@ -323,9 +325,11 @@ function VideoModal({
               />
             ) : embedUrl && local ? (
               <video
+                ref={videoRef}
                 src={embedUrl}
                 controls
                 autoPlay
+                controlsList="nodownload"
                 style={{ position: "absolute", inset: 0, width: "100%", height: "100%", background: "#000" }}
               />
             ) : (
@@ -385,7 +389,7 @@ export default function Portfolio() {
             alignItems: "baseline",
             justifyContent: "space-between",
             marginBottom: "3rem",
-            borderBottom: "1px solid #E5E4DF",
+            borderBottom: "1px solid rgba(240,237,232,0.1)",
             paddingBottom: "1.5rem",
           }}
         >
@@ -393,13 +397,13 @@ export default function Portfolio() {
             style={{
               fontFamily: "var(--font-playfair)",
               fontStyle: "italic",
-              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-              color: "#0D0D0D",
+              fontSize: "clamp(2rem, 2.8vw, 3.2rem)",
+              color: "#F0EDE8",
             }}
           >
             Portfolio
           </span>
-          <span style={{ fontSize: "0.7rem", letterSpacing: "0.12em", color: "#aaa", textTransform: "uppercase" }}>
+          <span style={{ fontSize: "0.72rem", letterSpacing: "0.12em", color: "rgba(240,237,232,0.35)", textTransform: "uppercase" }}>
             {projects.length} projets
           </span>
         </div>
@@ -408,7 +412,7 @@ export default function Portfolio() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))",
             gap: "2.5rem",
           }}
         >

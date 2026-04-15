@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Vidéos trop lourdes pour git/Vercel (à héberger sur Vimeo)
+/public/videos/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
