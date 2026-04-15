@@ -19,7 +19,7 @@ const projects = [
     title: "Atelier Auzance",
     category: "Film d'entreprise",
     year: "2026",
-    videoUrl: "/videos/atelier-auzance-2026.mp4",
+    videoUrl: "https://youtu.be/Fv2i3ralRnU",
     thumbnail: "/images/atelier-auzance-2026.png",
   },
   {
@@ -27,7 +27,7 @@ const projects = [
     title: "La Petite Conv / Le Grand Duc",
     category: "Événementiel",
     year: "2026",
-    videoUrl: "/videos/laptiteconv_le-grand-duc-.mp4",
+    videoUrl: "https://youtu.be/UjXMPRV_6oU",
     thumbnail: "/images/laptiteconv_le-grand-duc-2026-.png",
   },
   {
@@ -35,7 +35,7 @@ const projects = [
     title: "Délices & Services",
     category: "Film d'entreprise",
     year: "2025",
-    videoUrl: "/videos/delices-et-sevices-officiel.mp4",
+    videoUrl: "https://youtu.be/ON_k8_j0V9M",
     thumbnail: "/images/delice-et-services.png",
   },
   {
@@ -43,7 +43,7 @@ const projects = [
     title: "Les Jardins des Pagus",
     category: "Publicité",
     year: "2025",
-    videoUrl: "/videos/les-jardins-des-pagus-2025-.mp4",
+    videoUrl: "https://youtu.be/NiNXI6SiHyM",
     thumbnail: "/images/les-jardins-des-pagus-2025-.png",
   },
   {
@@ -51,7 +51,7 @@ const projects = [
     title: "La Nuit Sans Fin",
     category: "Événementiel",
     year: "2025",
-    videoUrl: "/videos/la-nuits-sans-fin-2025-.mp4",
+    videoUrl: "https://youtu.be/WO4Df476lqE",
     thumbnail: "/images/las-nuits-sans-fin.png",
   },
   {
@@ -59,7 +59,7 @@ const projects = [
     title: "Élémente Experience",
     category: "Événementiel",
     year: "2025",
-    videoUrl: "/videos/elemente-experience-2025.mp4",
+    videoUrl: "https://youtu.be/kp0QIf2E_2A",
     thumbnail: "/images/elemente-experience-2025.jpg",
   },
 ];
@@ -73,7 +73,7 @@ function toEmbedUrl(url: string): string {
     /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
   );
   if (ytMatch) {
-    return `https://www.youtube-nocookie.com/embed/${ytMatch[1]}?autoplay=1&rel=0`;
+    return `https://www.youtube-nocookie.com/embed/${ytMatch[1]}?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&color=white&enablejsapi=1`;
   }
 
   // Vimeo
@@ -269,6 +269,22 @@ function VideoModal({
   const local = project.videoUrl ? isLocalVideo(project.videoUrl) : false;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const videoRef = useRef<HTMLVideoElement>(null);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const onIframeLoad = () => {
+    const send = () => {
+      const win = iframeRef.current?.contentWindow;
+      if (!win) return;
+      // Volume à 50%
+      win.postMessage(JSON.stringify({ event: "command", func: "setVolume", args: [50] }), "*");
+      // Qualité max disponible
+      win.postMessage(JSON.stringify({ event: "command", func: "setPlaybackQualityRange", args: ["hd1080", "highres"] }), "*");
+      win.postMessage(JSON.stringify({ event: "command", func: "setPlaybackQuality", args: ["hd1080"] }), "*");
+    };
+    setTimeout(send, 800);
+    setTimeout(send, 1800);
+  };
 
   return (
     <AnimatePresence>
@@ -317,7 +333,9 @@ function VideoModal({
           <div style={{ aspectRatio: "16/9", background: "#111", position: "relative" }}>
             {embedUrl && !local ? (
               <iframe
+                ref={iframeRef}
                 src={embedUrl}
+                onLoad={onIframeLoad}
                 style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: "none" }}
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
@@ -330,6 +348,7 @@ function VideoModal({
                 controls
                 autoPlay
                 controlsList="nodownload"
+                onLoadedMetadata={() => { if (videoRef.current) videoRef.current.volume = 0.5; }}
                 style={{ position: "absolute", inset: 0, width: "100%", height: "100%", background: "#000" }}
               />
             ) : (

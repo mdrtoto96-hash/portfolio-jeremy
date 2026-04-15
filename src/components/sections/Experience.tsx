@@ -3,40 +3,51 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const experiences = [
+const timeline = [
   {
-    period: "2021 — Présent",
-    role: "Vidéaste Freelance",
-    company: "Indépendant",
-    desc: "Réalisation de clips musicaux, films publicitaires et courts-métrages pour des artistes et marques. Direction de la photographie, colorimétrie, montage.",
+    period: "2019 — 2025",
+    role: "Électricien",
+    company: "FAECE — La Garnache",
+    desc: "6 ans dans le secteur de l'électricité. Expérience du terrain, rigueur technique et sens de l'organisation. Reconversion volontaire vers la vidéo, ma véritable passion.",
+    current: false,
   },
   {
-    period: "2019 — 2021",
-    role: "Chef opérateur",
-    company: "Studio Lumière, Paris",
-    desc: "Direction de la photographie sur des productions publicitaires et institutionnelles. Gestion d'équipes techniques de 5 à 10 personnes.",
+    period: "2024",
+    role: "Formation Autodidacte",
+    company: "Auto-formation",
+    desc: "Apprentissage en autonomie complète : tournage, cadrage, montage sur DaVinci Resolve, colorimétrie, prises de vue drone. Passage de l'iPhone au matériel professionnel Sony. Aucune école, juste de la pratique et de la détermination.",
+    current: false,
   },
   {
-    period: "2017 — 2019",
-    role: "Cadreur / Monteur",
-    company: "Agence Média XYZ",
-    desc: "Production de contenus vidéo pour le web et les réseaux sociaux. Tournage, montage et motion design.",
+    period: "Oct. 2024",
+    role: "Prestations Événementielles",
+    company: "Association — Bénévolat",
+    desc: "Captation vidéo de festivals, concerts et événements associatifs. Réalisation d'aftermovies, mise en valeur de l'ambiance et de l'énergie live.",
+    current: true,
   },
   {
-    period: "2015 — 2017",
-    role: "Formation",
-    company: "École de l'Image, Paris",
-    desc: "Diplôme en réalisation audiovisuelle. Spécialisation cinématographie et post-production.",
+    period: "Juil. 2025",
+    role: "Création de JRV Production",
+    company: "Micro-entreprise",
+    desc: "Officialisation de mon activité avec la création de ma micro-entreprise. Tournage, montage et colorimétrie pour des entreprises, associations et événements. Gestion complète des projets de A à Z.",
+    current: true,
+  },
+  {
+    period: "2025 — 2026",
+    role: "Prestations Corporate & Événementiel",
+    company: "Clients entreprises & associations",
+    desc: "Réalisation de films d'entreprise et de captations événementielles pour des clients locaux : Délices & Services, Atelier Auzance, Élémente Experience et d'autres projets associatifs.",
+    current: true,
   },
 ];
 
 const skills = [
-  "Direction de la photographie",
-  "Colorimétrie — DaVinci Resolve",
-  "Montage — Premiere Pro",
-  "Motion Design — After Effects",
-  "Tournage drone (certifié)",
-  "Sony A7S III / FX3",
+  "Traitement de l'image",
+  "Montage vidéo",
+  "Cadrage et composition",
+  "Prises de vue aériennes (drone FPV)",
+  "Production de contenu vidéo",
+  "Organisation de projet",
 ];
 
 export default function Experience() {
@@ -55,46 +66,92 @@ export default function Experience() {
         alignItems: "start",
       }}>
 
-        {/* ── Colonne gauche : Expérience ── */}
+        {/* ── Colonne gauche : Timeline ── */}
         <div style={{ paddingRight: "4rem" }}>
           <p style={{
             fontFamily: "var(--font-playfair)", fontStyle: "italic",
             fontSize: "clamp(2rem, 2.8vw, 3.2rem)", fontWeight: 400,
-            color: "#F0EDE8", marginBottom: "2rem",
+            color: "#F0EDE8", marginBottom: "2.5rem",
           }}>
-            Expérience
+            Parcours
           </p>
 
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={exp.role}
-              initial={{ opacity: 0, y: 14 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              style={{
-                display: "grid",
-                gridTemplateColumns: "120px 1fr",
-                gap: "1.5rem",
-                padding: "1.6rem 0",
-                borderBottom: "1px solid rgba(240,237,232,0.1)",
-              }}
-            >
-              <span style={{ fontSize: "0.72rem", color: "rgba(240,237,232,0.35)", letterSpacing: "0.03em", paddingTop: "0.1rem" }}>
-                {exp.period}
-              </span>
-              <div>
-                <p style={{ fontSize: "1rem", fontWeight: 500, color: "#F0EDE8", marginBottom: "0.15rem" }}>
-                  {exp.role}
-                </p>
-                <p style={{ fontSize: "0.73rem", color: "#E05C3A", marginBottom: "0.5rem", letterSpacing: "0.04em" }}>
-                  {exp.company}
-                </p>
-                <p style={{ fontSize: "0.9rem", color: "rgba(240,237,232,0.5)", lineHeight: 1.7 }}>
-                  {exp.desc}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+          <div style={{ position: "relative" }}>
+            {/* Ligne verticale */}
+            <div style={{
+              position: "absolute",
+              left: "7px",
+              top: "6px",
+              bottom: "6px",
+              width: "1px",
+              background: "rgba(240,237,232,0.1)",
+            }} />
+
+            {timeline.map((item, i) => (
+              <motion.div
+                key={item.role}
+                initial={{ opacity: 0, x: -12 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.12 }}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: "1.5rem",
+                  paddingBottom: i < timeline.length - 1 ? "2.2rem" : 0,
+                }}
+              >
+                {/* Point sur la timeline */}
+                <div style={{ paddingTop: "6px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <div style={{
+                    width: "15px",
+                    height: "15px",
+                    borderRadius: "50%",
+                    background: item.current ? "#E05C3A" : "transparent",
+                    border: item.current ? "none" : "1px solid rgba(240,237,232,0.3)",
+                    flexShrink: 0,
+                    zIndex: 1,
+                  }} />
+                </div>
+
+                {/* Contenu */}
+                <div>
+                  <span style={{
+                    fontSize: "0.65rem",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color: item.current ? "#E05C3A" : "rgba(240,237,232,0.35)",
+                    display: "block",
+                    marginBottom: "0.3rem",
+                  }}>
+                    {item.period}
+                  </span>
+                  <p style={{
+                    fontSize: "1rem",
+                    fontWeight: 500,
+                    color: "#F0EDE8",
+                    marginBottom: "0.15rem",
+                  }}>
+                    {item.role}
+                  </p>
+                  <p style={{
+                    fontSize: "0.73rem",
+                    color: "rgba(240,237,232,0.4)",
+                    marginBottom: "0.6rem",
+                    letterSpacing: "0.03em",
+                  }}>
+                    {item.company}
+                  </p>
+                  <p style={{
+                    fontSize: "0.88rem",
+                    color: "rgba(240,237,232,0.5)",
+                    lineHeight: 1.75,
+                  }}>
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* ── Séparateur vertical ── */}

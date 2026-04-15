@@ -39,6 +39,9 @@ yarn-error.log*
 # Vidéos trop lourdes pour git/Vercel (à héberger sur Vimeo)
 /public/videos/
 
+# Métadonnées Windows
+*:Zone.Identifier
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -1,0 +1,5 @@
+# On tente de déployer avec les vidéos
+# Ce fichier override le .gitignore pour Vercel
+node_modules
+.next
+*:Zone.Identifier
