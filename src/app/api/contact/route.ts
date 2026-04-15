@@ -72,18 +72,19 @@ export async function POST(req: NextRequest) {
 
   const { name, email, project, message } = parsed.data;
 
-  // Ici, intégrez votre service d'envoi d'email (Resend, SendGrid, etc.)
-  // Exemple avec Resend :
-  // const { Resend } = await import("resend");
-  // const resend = new Resend(process.env.RESEND_API_KEY);
-  // await resend.emails.send({
-  //   from: "portfolio@jeremyrondeau.com",
-  //   to: "contact@jeremyrondeau.com",
-  //   subject: `Nouveau projet : ${project}`,
-  //   text: `De: ${name} (${email})\n\n${message}`,
-  // });
-
-  console.log("Nouveau contact:", { name, email, project, message });
+  try {
+    const { Resend } = await import("resend");
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: process.env.CONTACT_EMAIL ?? "jrv.production85@gmail.com",
+      subject: `📩 Nouveau message de ${name} — ${project}`,
+      text: `Nom : ${name}\nEmail : ${email}\nProjet : ${project}\n\n${message}`,
+    });
+  } catch (err) {
+    console.error("Erreur envoi email:", err);
+    return NextResponse.json({ error: "Erreur lors de l'envoi" }, { status: 500 });
+  }
 
   return NextResponse.json({ success: true }, { status: 200 });
 }

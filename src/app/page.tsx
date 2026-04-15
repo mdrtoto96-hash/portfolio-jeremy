@@ -112,7 +112,7 @@ export default function Home() {
             fontSize: "0.6rem", letterSpacing: "0.3em",
             textTransform: "uppercase", color: "rgba(240,237,232,0.3)",
             marginBottom: "2rem",
-          }}>Vidéaste — Paris</p>
+          }}>Vidéaste</p>
 
           <h1 className="hero-t2" style={{
             fontFamily: "var(--font-playfair)", fontStyle: "italic",
@@ -135,35 +135,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Bouton Showreel */}
-          <button
-            className="contact-blink"
-            onClick={() => setShowreel(true)}
-            style={{
-              marginTop: "2.8rem",
-              display: "inline-flex", alignItems: "center", gap: "0.75rem",
-              fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase",
-              color: "rgba(240,237,232,0.55)",
-              background: "none",
-              border: "1px solid rgba(240,237,232,0.18)",
-              padding: "0.65rem 1.6rem",
-              animationDelay: "1.4s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = "#F0EDE8";
-              e.currentTarget.style.borderColor = "rgba(240,237,232,0.5)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = "rgba(240,237,232,0.55)";
-              e.currentTarget.style.borderColor = "rgba(240,237,232,0.18)";
-            }}
-          >
-            {/* Icône play */}
-            <svg width="8" height="10" viewBox="0 0 8 10" fill="currentColor">
-              <path d="M0 0L8 5L0 10V0Z" />
-            </svg>
-            Showreel
-          </button>
 
           {/* Chevrons scroll */}
           <button className="hero-t4" onClick={() => go("#portfolio")} style={{
