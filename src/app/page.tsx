@@ -61,7 +61,7 @@ export default function Home() {
     <div id="top" style={{ background: "#0D0D0D", minHeight: "100vh" }}>
 
       {/* ── Barre sticky ── */}
-      <div style={{
+      <div className="nav-blur" style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
         transition: "opacity 0.4s",
         opacity: scrolled ? 1 : 0,

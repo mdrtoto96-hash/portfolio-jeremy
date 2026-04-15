@@ -74,28 +74,28 @@ export default function About() {
         >
           <div className="about-text" style={{ display: "flex", flexDirection: "column", gap: "1.2rem", maxWidth: "620px" }}>
             <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "rgba(240,237,232,0.6)" }}>
-              Salut, moi c&apos;est Jérémy. Je suis vidéaste depuis un an et demi et j&apos;adore vraiment
-              ce métier. Pour moi, la vidéo est magique car elle permet de partager des émotions et des
+              Bonjour, moi c&apos;est Jérémy. Je suis vidéaste depuis un an et demi et j&apos;adore vraiment
+              ce métier. Pour moi, la vidéo est magique, car elle permet de partager des émotions et des
               sensations que les mots ne peuvent pas décrire. Grâce à une vidéo, les gens peuvent vivre
               un moment à fond même s&apos;ils n&apos;étaient pas là.
             </p>
             <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "rgba(240,237,232,0.6)" }}>
               Ce que j&apos;aime par-dessus tout, c&apos;est le terrain. Rencontrer du monde, discuter et
-              capter l&apos;ambiance d&apos;un lieu. Mon parcours est un peu particulier car j&apos;ai commencé
-              avec un iPhone quand je bossais encore dans l&apos;électricité. J&apos;ai tellement aimé ça
+              capter l&apos;ambiance d&apos;un lieu. Mon parcours est un peu particulier, car j&apos;ai commencé
+              avec un iPhone quand je travaillais encore dans l&apos;électricité. J&apos;ai tellement aimé ça
               que j&apos;ai investi dans du vrai matériel et j&apos;ai tout appris par moi-même. À force de
               pratique et de tutos, je suis devenu autonome sur le tournage, le cadrage, le montage
               et la colorimétrie.
             </p>
             <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "rgba(240,237,232,0.6)" }}>
-              Aujourd&apos;hui je travaille beaucoup avec mon association sur des événements. C&apos;est là
-              que je m&apos;éclate le plus : capturer l&apos;énergie des gens et la faire revivre à l&apos;écran.
-              Le côté humain et créatif est super important pour moi. J&apos;adore bosser avec d&apos;autres
+              Aujourd&apos;hui, je travaille beaucoup avec mon association sur des événements. C&apos;est ce
+              qui m&apos;anime le plus : capturer l&apos;énergie des gens et la faire revivre à l&apos;écran.
+              Le côté humain et créatif est super important pour moi. J&apos;aime travailler avec d&apos;autres
               passionnés et échanger des idées pour sortir le meilleur résultat possible.
             </p>
             <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "rgba(240,237,232,0.6)" }}>
               Je suis maintenant à la recherche de nouvelles opportunités pour évoluer à fond. Mon but
-              est de participer à des projets plus importants car je suis prêt à relever de nouveaux
+              est de participer à des projets plus importants, car je suis prêt à relever de nouveaux
               défis et à montrer ce que je suis capable de faire !
             </p>
           </div>

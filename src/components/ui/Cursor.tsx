@@ -7,6 +7,9 @@ export default function Cursor() {
   const ring = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Pas de curseur custom sur les appareils tactiles
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
     let rx = 0, ry = 0;
     let mx = 0, my = 0;
     let raf: number;

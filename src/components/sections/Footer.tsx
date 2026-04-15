@@ -111,7 +111,7 @@ export default function Footer() {
 
           {/* LinkedIn */}
           <a
-            href="https://www.linkedin.com/in/jeremy-rondeau-9b1176372/"
+            href="https://www.linkedin.com/in/jeremy-rondeau-videaste"
             target="_blank"
             rel="noopener noreferrer"
             title="LinkedIn"
