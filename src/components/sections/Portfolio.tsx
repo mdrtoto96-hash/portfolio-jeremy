@@ -112,24 +112,19 @@ function VideoCard({
       onClick={() => onOpen(project)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{
-        cursor: "pointer",
-        display: "flex",
-        flexDirection: "column",
-        gap: "0.75rem",
-      }}
+      style={{ cursor: "pointer", display: "flex", flexDirection: "column", gap: "0.75rem" }}
     >
       {/* Vignette 16:9 */}
-      <div
-        style={{
-          position: "relative",
-          aspectRatio: "16/9",
-          background: "#1A1A1A",
-          overflow: "hidden",
-          borderRadius: "2px",
-        }}
-      >
-        {/* Miniature si disponible */}
+      <div style={{
+        position: "relative",
+        aspectRatio: "16/9",
+        background: "#1A1A1A",
+        overflow: "hidden",
+        border: hovered
+          ? "1px solid rgba(240,237,232,0.55)"
+          : "1px solid rgba(240,237,232,0.18)",
+        transition: "border-color 0.3s",
+      }}>
         {project.thumbnail && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -148,109 +143,54 @@ function VideoCard({
         )}
 
         {/* Overlay hover */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: hovered ? "rgba(13,13,13,0.35)" : "rgba(13,13,13,0)",
-            transition: "background 0.3s",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {/* Bouton play */}
-          <div
-            style={{
-              width: "52px",
-              height: "52px",
-              borderRadius: "50%",
-              border: "1.5px solid rgba(250,250,248,0.9)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              opacity: hovered ? 1 : 0,
-              transform: hovered ? "scale(1)" : "scale(0.7)",
-              transition: "all 0.3s ease",
-              background: "rgba(250,250,248,0.12)",
-              backdropFilter: "blur(4px)",
-            }}
-          >
-            {/* Triangle play */}
-            <div
-              style={{
-                width: 0,
-                height: 0,
-                borderTop: "8px solid transparent",
-                borderBottom: "8px solid transparent",
-                borderLeft: "14px solid rgba(250,250,248,0.95)",
-                marginLeft: "3px",
-              }}
-            />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: hovered ? "rgba(13,13,13,0.35)" : "rgba(13,13,13,0)",
+          transition: "background 0.3s",
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <div style={{
+            width: "52px", height: "52px",
+            borderRadius: "50%",
+            border: "1.5px solid rgba(250,250,248,0.9)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            opacity: hovered ? 1 : 0,
+            transform: hovered ? "scale(1)" : "scale(0.7)",
+            transition: "all 0.3s ease",
+            background: "rgba(250,250,248,0.12)",
+            backdropFilter: "blur(4px)",
+          }}>
+            <div style={{
+              width: 0, height: 0,
+              borderTop: "8px solid transparent",
+              borderBottom: "8px solid transparent",
+              borderLeft: "14px solid rgba(250,250,248,0.95)",
+              marginLeft: "3px",
+            }} />
           </div>
         </div>
 
-        {/* Placeholder texte quand pas de miniature */}
         {!project.thumbnail && (
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <span
-              style={{
-                fontSize: "0.65rem",
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                color: "rgba(240,237,232,0.2)",
-                opacity: hovered ? 0 : 1,
-                transition: "opacity 0.2s",
-              }}
-            >
+          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(240,237,232,0.2)" }}>
               Miniature à ajouter
             </span>
           </div>
         )}
-
-        {/* Catégorie coin haut gauche */}
-        <div
-          style={{
-            position: "absolute",
-            top: "0.75rem",
-            left: "0.75rem",
-            fontSize: "0.6rem",
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: "rgba(240,237,232,0.5)",
-            background: "rgba(13,13,13,0.75)",
-            padding: "0.2rem 0.5rem",
-            backdropFilter: "blur(4px)",
-          }}
-        >
-          {project.category}
-        </div>
       </div>
 
       {/* Info sous la carte */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-        <span
-          className="card-title"
-          style={{
-            fontSize: "0.95rem",
-            fontWeight: 500,
-            color: "#F0EDE8",
-            letterSpacing: "-0.01em",
-            transition: "color 0.2s",
-            ...(hovered ? { color: "#E05C3A" } : {}),
-          }}
-        >
+        <span className="card-title" style={{
+          fontSize: "0.95rem", fontWeight: 500,
+          color: hovered ? "#E05C3A" : "#F0EDE8",
+          letterSpacing: "-0.01em", transition: "color 0.2s",
+        }}>
           {project.title}
         </span>
-        <span className="card-year" style={{ fontSize: "0.75rem", color: "rgba(240,237,232,0.35)" }}>{project.year}</span>
+        <span className="card-year" style={{ fontSize: "0.75rem", color: "rgba(240,237,232,0.35)" }}>
+          {project.year}
+        </span>
       </div>
     </motion.div>
   );

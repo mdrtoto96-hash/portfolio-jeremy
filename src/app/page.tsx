@@ -110,7 +110,7 @@ export default function Home() {
         }}>
           <p className="hero-t1" style={{
             fontSize: "0.6rem", letterSpacing: "0.3em",
-            textTransform: "uppercase", color: "rgba(240,237,232,0.3)",
+            textTransform: "uppercase", color: "rgba(240,237,232,0.55)",
             marginBottom: "2rem",
           }}>Vidéaste</p>
 
@@ -121,8 +121,50 @@ export default function Home() {
             textAlign: "center",
           }}>Jeremy Rondeau</h1>
 
+          {/* Bouton Showreel */}
+          <button
+            className="hero-t3 showreel-pulse"
+            onClick={() => setShowreel(true)}
+            style={{
+              marginTop: "2.5rem",
+              display: "flex", alignItems: "center", gap: "0.75rem",
+              background: "none", border: "1px solid rgba(240,237,232,0.2)",
+              color: "rgba(240,237,232,0.7)",
+              padding: "0.7rem 1.8rem",
+              fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase",
+              transition: "color 0.25s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.animation = "none";
+              e.currentTarget.style.borderColor = "rgba(240,237,232,0.6)";
+              e.currentTarget.style.color = "#F0EDE8";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.animation = "";
+              e.currentTarget.style.borderColor = "";
+              e.currentTarget.style.color = "rgba(240,237,232,0.7)";
+            }}
+          >
+            {/* Icône play */}
+            <span style={{
+              display: "inline-flex", alignItems: "center", justifyContent: "center",
+              width: "18px", height: "18px",
+              border: "1px solid currentColor", borderRadius: "50%",
+              flexShrink: 0,
+            }}>
+              <span style={{
+                width: 0, height: 0,
+                borderTop: "4px solid transparent",
+                borderBottom: "4px solid transparent",
+                borderLeft: "7px solid currentColor",
+                marginLeft: "2px",
+              }} />
+            </span>
+            Showreel
+          </button>
+
           {/* Nav links */}
-          <div className="hero-t3 hero-nav-links" style={{
+          <div className="hero-t5 hero-nav-links" style={{
             display: "flex", gap: "2.5rem", marginTop: "3rem",
             justifyContent: "center",
           }}>
@@ -137,7 +179,7 @@ export default function Home() {
 
 
           {/* Chevrons scroll */}
-          <button className="hero-t4" onClick={() => go("#portfolio")} style={{
+          <button className="hero-t5" onClick={() => go("#portfolio")} style={{
             marginTop: "4rem", display: "flex", flexDirection: "column",
             alignItems: "center", gap: 0,
             background: "none", border: "none",

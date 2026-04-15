@@ -17,24 +17,32 @@ export default function About() {
       style={{
         paddingTop: "5rem",
         paddingBottom: "5rem",
-        borderTop: "1px solid rgba(240,237,232,0.1)",
-        borderBottom: "1px solid rgba(240,237,232,0.1)",
+        borderTop: "1px solid rgba(240,237,232,0.07)",
       }}
     >
-      {/* Titre au-dessus de la grille */}
-      <p style={{
-        fontFamily: "var(--font-playfair)", fontStyle: "italic",
-        fontSize: "clamp(2rem, 2.8vw, 3.2rem)", fontWeight: 400,
-        color: "#F0EDE8", marginBottom: "3rem",
+      {/* Titre — même style que Portfolio */}
+      <div style={{
+        display: "flex",
+        alignItems: "baseline",
+        justifyContent: "space-between",
+        marginBottom: "3rem",
+        borderBottom: "1px solid rgba(240,237,232,0.1)",
+        paddingBottom: "1.5rem",
       }}>
-        À propos
-      </p>
+        <span style={{
+          fontFamily: "var(--font-playfair)", fontStyle: "italic",
+          fontSize: "clamp(2rem, 2.8vw, 3.2rem)",
+          color: "#F0EDE8",
+        }}>
+          À propos
+        </span>
+      </div>
 
       <div className="about-grid" style={{
         display: "grid",
-        gridTemplateColumns: "360px 1fr",
+        gridTemplateColumns: "1fr 2fr",
         gap: "5rem",
-        alignItems: "start",
+        alignItems: "center",
       }}>
 
         {/* ── Photo ── */}
@@ -53,15 +61,21 @@ export default function About() {
             onClick={() => setLightbox(true)}
             style={{
               width: "100%",
-              height: "500px",
-              objectFit: "cover",
-              objectPosition: "top center",
+              height: "auto",
               display: "block",
               cursor: "zoom-in",
-              transition: "opacity 0.2s",
+              transition: "opacity 0.2s, outline-color 0.3s",
+              outline: "1px solid rgba(240,237,232,0.18)",
+              outlineOffset: "-1px",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = "0.85";
+              e.currentTarget.style.outlineColor = "rgba(240,237,232,0.55)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = "1";
+              e.currentTarget.style.outlineColor = "rgba(240,237,232,0.18)";
+            }}
           />
         </motion.div>
 
@@ -72,9 +86,9 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.15 }}
           style={{ minWidth: 0 }}
         >
-          <div className="about-text" style={{ display: "flex", flexDirection: "column", gap: "1.2rem", maxWidth: "620px" }}>
+          <div className="about-text" style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
             <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "rgba(240,237,232,0.6)" }}>
-              Bonjour, moi c&apos;est Jérémy. Je suis vidéaste depuis un an et demi et j&apos;adore vraiment
+              Je suis vidéaste depuis un an et demi et j&apos;adore vraiment
               ce métier. Pour moi, la vidéo est magique, car elle permet de partager des émotions et des
               sensations que les mots ne peuvent pas décrire. Grâce à une vidéo, les gens peuvent vivre
               un moment à fond même s&apos;ils n&apos;étaient pas là.
@@ -95,7 +109,7 @@ export default function About() {
             </p>
             <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "rgba(240,237,232,0.6)" }}>
               Je suis maintenant à la recherche de nouvelles opportunités pour évoluer à fond. Mon but
-              est de participer à des projets plus importants, car je suis prêt à relever de nouveaux
+              est de participer à des projets plus importants, je suis prêt à relever de nouveaux
               défis et à montrer ce que je suis capable de faire !
             </p>
           </div>
@@ -103,8 +117,7 @@ export default function About() {
           {/* Infos pratiques */}
           <div style={{
             marginTop: "2.5rem",
-            paddingTop: "1.5rem",
-            borderTop: "1px solid rgba(240,237,232,0.1)",
+            paddingTop: "0.5rem",
             display: "flex",
             gap: "4rem",
             flexWrap: "wrap",
@@ -117,7 +130,7 @@ export default function About() {
               <div key={item.label}>
                 <p style={{
                   fontSize: "0.62rem", letterSpacing: "0.15em",
-                  textTransform: "uppercase", color: "rgba(240,237,232,0.35)", marginBottom: "0.3rem",
+                  textTransform: "uppercase", color: "rgba(240,237,232,0.5)", marginBottom: "0.3rem",
                 }}>
                   {item.label}
                 </p>

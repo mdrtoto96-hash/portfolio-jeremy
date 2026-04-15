@@ -50,10 +50,11 @@ a, button, [role="button"] {
   to   { opacity: 1; transform: translateY(0); }
 }
 .hero-zoom  { animation: heroZoom 2.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards; will-change: transform; }
-.hero-t1    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.3s both; }
-.hero-t2    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.5s both; }
-.hero-t3    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.75s both; }
-.hero-t4    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 1.0s both; }
+.hero-t1    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.3s  both; }
+.hero-t2    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.5s  both; }
+.hero-t3    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.72s both; }
+.hero-t4    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.95s both; }
+.hero-t5    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 1.2s  both; }
 
 /* ── Scroll indicator (chevrons cascade) ── */
 @keyframes chevronCascade {
@@ -100,12 +101,24 @@ a, button, [role="button"] {
   border-color: rgba(240,237,232,0.7);
 }
 
+/* ── Showreel button pulse ── */
+@keyframes showreelPulse {
+  0%, 100% { border-color: rgba(240,237,232,0.2); }
+  50%       { border-color: rgba(240,237,232,0.55); }
+}
+.showreel-pulse { animation: showreelPulse 2.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .showreel-pulse { animation: none; } }
+
 /* ── Contact blink ── */
 @keyframes contactBlink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.35; }
 }
 .contact-blink { animation: contactBlink 2.8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .contact-blink { animation: none; }
+  .chev-0, .chev-1, .chev-2 { animation: none; opacity: 0.35; }
+}
 
 /* ── Tactile : désactive le curseur personnalisé ── */
 @media (pointer: coarse) {
@@ -152,9 +165,10 @@ a, button, [role="button"] {
   .about-photo-wrap { margin-top: 0 !important; }
   /* Cadrage paysage : visage centré */
   .about-photo-img  {
-    height: 220px !important;
-    aspect-ratio: unset !important;
-    object-position: center 32% !important;
+    height: 260px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    object-position: center 42% !important;
   }
 
   /* About : texte légèrement plus petit */
@@ -177,10 +191,15 @@ a, button, [role="button"] {
   }
 
   /* Footer contact : centré sur mobile */
-  .footer-title   { text-align: center !important; }
-  .footer-contact { align-items: center !important; }
+  .footer-title-wrap { justify-content: center !important; }
+  .footer-title      { text-align: center !important; }
+  .footer-contact    { align-items: center !important; }
 
-  /* Portfolio : 2 colonnes, cartes plus compactes */
+  /* Contact : une seule colonne */
+  .contact-grid     { grid-template-columns: 1fr !important; gap: 3rem !important; }
+  .contact-form-row { grid-template-columns: 1fr !important; }
+
+  /* Portfolio : 2 colonnes */
   .portfolio-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 0.9rem !important;
@@ -193,7 +212,6 @@ a, button, [role="button"] {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
   }
-  /* Portfolio : titre/année plus petits dans les cartes */
-  .portfolio-grid .card-title { font-size: 0.78rem !important; }
-  .portfolio-grid .card-year  { font-size: 0.65rem !important; }
+  .portfolio-grid .card-title { font-size: 0.72rem !important; }
+  .portfolio-grid .card-year  { font-size: 0.6rem !important; }
 }

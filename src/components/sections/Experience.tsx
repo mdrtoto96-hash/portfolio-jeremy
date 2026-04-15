@@ -59,7 +59,7 @@ export default function Experience() {
       id="experience"
       ref={ref}
       className="mob-section"
-      style={{ paddingTop: "5rem", paddingBottom: "3rem" }}
+      style={{ paddingTop: "5rem", paddingBottom: "3rem", borderTop: "1px solid rgba(240,237,232,0.07)" }}
     >
       <div className="exp-grid" style={{
         display: "grid",
@@ -69,13 +69,17 @@ export default function Experience() {
 
         {/* ── Colonne gauche : Timeline ── */}
         <div className="exp-left" style={{ paddingRight: "4rem" }}>
-          <p style={{
-            fontFamily: "var(--font-playfair)", fontStyle: "italic",
-            fontSize: "clamp(2rem, 2.8vw, 3.2rem)", fontWeight: 400,
-            color: "#F0EDE8", marginBottom: "2.5rem",
+          <div style={{
+            display: "flex", alignItems: "baseline", justifyContent: "space-between",
+            marginBottom: "2.5rem",
+            borderBottom: "1px solid rgba(240,237,232,0.1)",
+            paddingBottom: "1.5rem",
           }}>
-            Parcours
-          </p>
+            <span style={{
+              fontFamily: "var(--font-playfair)", fontStyle: "italic",
+              fontSize: "clamp(2rem, 2.8vw, 3.2rem)", color: "#F0EDE8",
+            }}>Parcours</span>
+          </div>
 
           <div style={{ position: "relative" }}>
             {/* Ligne verticale */}
@@ -167,13 +171,17 @@ export default function Experience() {
           transition={{ duration: 0.5, delay: 0.2 }}
           style={{ paddingLeft: "4rem" }}
         >
-          <p style={{
-            fontFamily: "var(--font-playfair)", fontStyle: "italic",
-            fontSize: "clamp(2rem, 2.8vw, 3.2rem)", fontWeight: 400,
-            color: "#F0EDE8", marginBottom: "2rem",
+          <div style={{
+            display: "flex", alignItems: "baseline", justifyContent: "space-between",
+            marginBottom: "2rem",
+            borderBottom: "1px solid rgba(240,237,232,0.1)",
+            paddingBottom: "1.5rem",
           }}>
-            Compétences
-          </p>
+            <span style={{
+              fontFamily: "var(--font-playfair)", fontStyle: "italic",
+              fontSize: "clamp(2rem, 2.8vw, 3.2rem)", color: "#F0EDE8",
+            }}>Compétences</span>
+          </div>
 
           <div className="exp-skills-grid">
             {skills.map((s, i) => (

@@ -12,23 +12,29 @@ export default function Footer() {
       }}
     >
       {/* ── Titre Contact qui clignote ── */}
-      <h2
-        className="contact-blink footer-title"
-        style={{
-          fontFamily: "var(--font-playfair)",
-          fontStyle: "italic",
-          fontSize: "clamp(2.5rem, 4vw, 5rem)",
-          fontWeight: 400,
-          color: "#F0EDE8",
-          lineHeight: 1,
-          marginBottom: "2rem",
-        }}
-      >
-        Contact
-      </h2>
+      <div className="footer-title-wrap" style={{
+        display: "flex", alignItems: "baseline", justifyContent: "space-between",
+        marginBottom: "2rem",
+        borderBottom: "1px solid rgba(240,237,232,0.1)",
+        paddingBottom: "1.5rem",
+      }}>
+        <h2
+          className="footer-title"
+          style={{
+            fontFamily: "var(--font-playfair)",
+            fontStyle: "italic",
+            fontSize: "clamp(2rem, 2.8vw, 3.2rem)",
+            fontWeight: 400,
+            color: "#F0EDE8",
+            lineHeight: 1,
+          }}
+        >
+          Contact
+        </h2>
+      </div>
 
       {/* ── Infos de contact ── */}
-      <div className="footer-contact" style={{ display: "flex", flexDirection: "column", gap: "1.4rem", marginBottom: "3rem" }}>
+      <div className="footer-contact" style={{ display: "flex", flexDirection: "column", gap: "1.4rem", marginBottom: "3rem", alignItems: "flex-start" }}>
         <a
           href="mailto:jrv.production85@gmail.com"
           style={{
@@ -41,7 +47,7 @@ export default function Footer() {
             transition: "color 0.2s",
             letterSpacing: "0.01em",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "#F0EDE8")}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#E05C3A")}
           onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.55)")}
         >
           <Mail size={18} strokeWidth={1.2} style={{ flexShrink: 0, opacity: 0.6 }} />
@@ -60,7 +66,7 @@ export default function Footer() {
             transition: "color 0.2s",
             letterSpacing: "0.01em",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "#F0EDE8")}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#E05C3A")}
           onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.55)")}
         >
           <Phone size={18} strokeWidth={1.2} style={{ flexShrink: 0, opacity: 0.6 }} />
@@ -99,7 +105,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             title="Instagram"
             style={{ color: "rgba(240,237,232,0.35)", transition: "color 0.2s", display: "flex" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#F0EDE8")}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#E05C3A")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.35)")}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
@@ -116,7 +122,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             title="LinkedIn"
             style={{ color: "rgba(240,237,232,0.35)", transition: "color 0.2s", display: "flex" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#F0EDE8")}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#E05C3A")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.35)")}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
