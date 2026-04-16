@@ -44,7 +44,7 @@ export default function Home() {
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 80);
-    window.addEventListener("scroll", fn);
+    window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
@@ -84,7 +84,7 @@ export default function Home() {
       </div>
 
       {/* ── HERO ── */}
-      <div style={{ width: W, height: "100vh", overflow: "hidden", position: "relative" }}>
+      <div className="hero-full" style={{ width: W, overflow: "hidden", position: "relative" }}>
         <div className="hero-zoom" style={{
           position: "absolute", inset: 0,
           background: "linear-gradient(160deg, #181816 0%, #0D0D0D 60%)",
