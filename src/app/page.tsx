@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X } from "lucide-react";
 import Portfolio from "@/components/sections/Portfolio";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
@@ -36,7 +35,6 @@ const NAV_BTN: React.CSSProperties = {
 
 export default function Home() {
   const [scrolled,  setScrolled]  = useState(false);
-  const [showreel,  setShowreel]  = useState(false);
 
   // Toujours revenir en haut au chargement
   useEffect(() => {
@@ -48,13 +46,6 @@ export default function Home() {
     const fn = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
-  }, []);
-
-  // Fermer le showreel avec Échap
-  useEffect(() => {
-    const fn = (e: KeyboardEvent) => { if (e.key === "Escape") setShowreel(false); };
-    window.addEventListener("keydown", fn);
-    return () => window.removeEventListener("keydown", fn);
   }, []);
 
   return (
@@ -121,10 +112,10 @@ export default function Home() {
             textAlign: "center",
           }}>Jeremy Rondeau</h1>
 
-          {/* Bouton Showreel */}
+          {/* Bouton Portfolio */}
           <button
-            className="hero-t3 showreel-pulse"
-            onClick={() => setShowreel(true)}
+            className="hero-t3"
+            onClick={() => go("#portfolio")}
             style={{
               marginTop: "2.5rem",
               display: "flex", alignItems: "center", gap: "0.75rem",
@@ -132,50 +123,19 @@ export default function Home() {
               color: "rgba(240,237,232,0.7)",
               padding: "0.7rem 1.8rem",
               fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase",
-              transition: "color 0.25s",
+              transition: "color 0.25s, border-color 0.25s",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.animation = "none";
               e.currentTarget.style.borderColor = "rgba(240,237,232,0.6)";
               e.currentTarget.style.color = "#F0EDE8";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.animation = "";
-              e.currentTarget.style.borderColor = "";
+              e.currentTarget.style.borderColor = "rgba(240,237,232,0.2)";
               e.currentTarget.style.color = "rgba(240,237,232,0.7)";
             }}
           >
-            {/* Icône play */}
-            <span style={{
-              display: "inline-flex", alignItems: "center", justifyContent: "center",
-              width: "18px", height: "18px",
-              border: "1px solid currentColor", borderRadius: "50%",
-              flexShrink: 0,
-            }}>
-              <span style={{
-                width: 0, height: 0,
-                borderTop: "4px solid transparent",
-                borderBottom: "4px solid transparent",
-                borderLeft: "7px solid currentColor",
-                marginLeft: "2px",
-              }} />
-            </span>
-            Showreel
+            Portfolio
           </button>
-
-          {/* Nav links */}
-          <div className="hero-t5 hero-nav-links" style={{
-            display: "flex", gap: "2.5rem", marginTop: "3rem",
-            justifyContent: "center",
-          }}>
-            {navLinks.map((l) => (
-              <button key={l.href} onClick={() => go(l.href)}
-                style={NAV_BTN}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#F0EDE8")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.4)")}
-              >{l.label}</button>
-            ))}
-          </div>
 
 
           {/* Chevrons scroll */}
@@ -202,81 +162,6 @@ export default function Home() {
         <Footer />
       </div>
 
-      {/* ── Modal Showreel ── */}
-      {showreel && (
-        <div
-          onClick={() => setShowreel(false)}
-          style={{
-            position: "fixed", inset: 0, zIndex: 9999,
-            background: "rgba(13,13,13,0.97)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            padding: "3rem",
-          }}
-        >
-          {/* Fermer */}
-          <button
-            onClick={() => setShowreel(false)}
-            style={{
-              position: "absolute", top: "2rem", right: "2rem",
-              background: "none", border: "none",
-              color: "rgba(240,237,232,0.5)",
-              transition: "color 0.2s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#F0EDE8")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.5)")}
-          >
-            <X size={22} strokeWidth={1.2} />
-          </button>
-
-          {/* Lecteur */}
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{ width: "100%", maxWidth: "1100px" }}
-          >
-            <div style={{
-              aspectRatio: "16/9",
-              background: "#0a0a0a",
-              border: "1px solid rgba(240,237,232,0.07)",
-              display: "flex", flexDirection: "column",
-              alignItems: "center", justifyContent: "center",
-              gap: "1rem",
-            }}>
-              {/*
-                ── Pour ajouter le showreel ──
-                Remplacez ce bloc par :
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/VOTRE_ID?autoplay=1"
-                  style={{ position:"absolute", inset:0, width:"100%", height:"100%", border:"none" }}
-                  allow="autoplay; fullscreen"
-                  allowFullScreen
-                />
-              */}
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                <circle cx="24" cy="24" r="23" stroke="rgba(240,237,232,0.12)" strokeWidth="1"/>
-                <path d="M20 16L34 24L20 32V16Z" fill="rgba(240,237,232,0.2)"/>
-              </svg>
-              <p style={{
-                fontSize: "0.62rem", letterSpacing: "0.2em",
-                textTransform: "uppercase", color: "rgba(240,237,232,0.2)",
-              }}>
-                Showreel à venir
-              </p>
-            </div>
-
-            <div style={{
-              display: "flex", justifyContent: "space-between",
-              padding: "1rem 0 0",
-              fontSize: "0.72rem",
-            }}>
-              <span style={{
-                fontFamily: "var(--font-playfair)", fontStyle: "italic",
-                color: "rgba(240,237,232,0.5)",
-              }}>Jeremy Rondeau — Showreel</span>
-              <span style={{ color: "rgba(240,237,232,0.2)", letterSpacing: "0.08em" }}>2024</span>
-            </div>
-          </div>
-        </div>
-      )}
 
     </div>
   );
