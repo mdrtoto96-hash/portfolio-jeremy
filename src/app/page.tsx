@@ -30,7 +30,7 @@ function go(href: string) {
 const NAV_BTN: React.CSSProperties = {
   fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase",
   color: "rgba(240,237,232,0.4)", background: "none", border: "none",
-  cursor: "none", transition: "color 0.2s", padding: 0,
+  transition: "color 0.2s", padding: 0,
 };
 
 export default function Home() {
@@ -136,7 +136,6 @@ export default function Home() {
           >
             Portfolio
           </button>
-
 
           {/* Chevrons scroll */}
           <button className="hero-t5" onClick={() => go("#portfolio")} style={{

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
@@ -201,35 +201,35 @@ function VideoModal({
   project,
   onClose,
 }: {
-  project: (typeof projects)[0] | null;
+  project: (typeof projects)[0];
   onClose: () => void;
 }) {
-  if (!project) return null;
+  const videoRef   = useRef<HTMLVideoElement>(null);
+  const iframeRef  = useRef<HTMLIFrameElement>(null);
+  const sendTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  useEffect(() => {
+    return () => { sendTimers.current.forEach(clearTimeout); };
+  }, []);
 
   const embedUrl = project.videoUrl ? toEmbedUrl(project.videoUrl) : "";
-  const local = project.videoUrl ? isLocalVideo(project.videoUrl) : false;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const videoRef = useRef<HTMLVideoElement>(null);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const local    = project.videoUrl ? isLocalVideo(project.videoUrl) : false;
 
   const onIframeLoad = () => {
     const send = () => {
       const win = iframeRef.current?.contentWindow;
       if (!win) return;
-      // Volume à 50%
+      // Retry à 800ms puis 1800ms : le player YouTube n'est pas prêt immédiatement après onLoad
       win.postMessage(JSON.stringify({ event: "command", func: "setVolume", args: [50] }), "*");
-      // Qualité max disponible
       win.postMessage(JSON.stringify({ event: "command", func: "setPlaybackQualityRange", args: ["hd1080", "highres"] }), "*");
       win.postMessage(JSON.stringify({ event: "command", func: "setPlaybackQuality", args: ["hd1080"] }), "*");
     };
-    setTimeout(send, 800);
-    setTimeout(send, 1800);
+    sendTimers.current.forEach(clearTimeout);
+    sendTimers.current = [setTimeout(send, 800), setTimeout(send, 1800)];
   };
 
   return (
-    <AnimatePresence>
-      <motion.div
+    <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -329,7 +329,6 @@ function VideoModal({
           </div>
         </motion.div>
       </motion.div>
-    </AnimatePresence>
   );
 }
 
@@ -390,7 +389,9 @@ export default function Portfolio() {
       </section>
 
       {/* Modal */}
-      {active && <VideoModal project={active} onClose={() => setActive(null)} />}
+      <AnimatePresence>
+        {active && <VideoModal key={active.id} project={active} onClose={() => setActive(null)} />}
+      </AnimatePresence>
     </>
   );
 }

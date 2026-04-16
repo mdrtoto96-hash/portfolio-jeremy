@@ -27,7 +27,7 @@ export default function Cursor() {
     const animate = () => {
       rx = lerp(rx, mx, 0.13);
       ry = lerp(ry, my, 0.13);
-      if (ring.current) {
+      if (ring.current && (Math.abs(rx - mx) > 0.1 || Math.abs(ry - my) > 0.1)) {
         ring.current.style.left = `${rx}px`;
         ring.current.style.top  = `${ry}px`;
       }

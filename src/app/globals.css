@@ -53,7 +53,6 @@ a, button, [role="button"] {
 .hero-t1    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.3s  both; }
 .hero-t2    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.5s  both; }
 .hero-t3    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.72s both; }
-.hero-t4    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 0.95s both; }
 .hero-t5    { animation: fadeUp 0.9s cubic-bezier(0.25,0.1,0.25,1) 1.2s  both; }
 
 /* ── Scroll indicator (chevrons cascade) ── */
@@ -101,22 +100,7 @@ a, button, [role="button"] {
   border-color: rgba(240,237,232,0.7);
 }
 
-/* ── Showreel button pulse ── */
-@keyframes showreelPulse {
-  0%, 100% { border-color: rgba(240,237,232,0.2); }
-  50%       { border-color: rgba(240,237,232,0.55); }
-}
-.showreel-pulse { animation: showreelPulse 2.4s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) { .showreel-pulse { animation: none; } }
-
-/* ── Contact blink ── */
-@keyframes contactBlink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.35; }
-}
-.contact-blink { animation: contactBlink 2.8s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
-  .contact-blink { animation: none; }
   .chev-0, .chev-1, .chev-2 { animation: none; opacity: 0.35; }
 }
 
@@ -145,17 +129,6 @@ a, button, [role="button"] {
 
   /* Sticky nav : masque les liens, garde juste le nom */
   .nav-links-sticky { display: none !important; }
-
-  /* Hero nav : une ligne horizontale */
-  .hero-nav-links {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 1.5rem !important;
-    justify-content: center !important;
-    flex-wrap: wrap !important;
-    margin-top: 2.5rem !important;
-    width: auto !important;
-  }
 
   /* About : une seule colonne */
   .about-grid {
