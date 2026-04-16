@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import GlobalUI from "@/components/ui/GlobalUI";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-dm",
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <GlobalUI />
         {children}
+        <Analytics />
       </body>
     </html>
   );
