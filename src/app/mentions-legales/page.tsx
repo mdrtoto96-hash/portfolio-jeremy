@@ -64,6 +64,8 @@ export default function MentionsLegales() {
               { label: "Email", value: "jrv.production85@gmail.com" },
               { label: "Téléphone", value: "06 72 75 19 54" },
               { label: "SIRET", value: "989 255 237 00012" },
+              { label: "TVA", value: "Non assujetti à la TVA — Article 293 B du CGI" },
+              { label: "Directeur de la publication", value: "Rondeau Jeremy" },
             ].map(({ label, value }) => (
               <div key={label}>
                 <span style={LABEL}>{label}</span>
