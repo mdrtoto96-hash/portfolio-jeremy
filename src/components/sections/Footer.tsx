@@ -69,7 +69,6 @@ export default function Footer() {
       {/* ── Barre basse ── */}
       <div style={{
         display: "flex", justifyContent: "space-between", alignItems: "center",
-        flexWrap: "wrap", gap: "1rem",
         borderTop: "1px solid rgba(240,237,232,0.08)", paddingTop: "2rem",
       }}>
         <span style={{
@@ -79,22 +78,11 @@ export default function Footer() {
           Jeremy Rondeau
         </span>
 
-        <span style={{ fontSize: "0.7rem", color: "rgba(240,237,232,0.2)", letterSpacing: "0.05em" }}>
-          © {new Date().getFullYear()} — Vidéaste
-        </span>
+        <div style={{ display: "flex", alignItems: "center", gap: "1.2rem" }}>
+          <span style={{ fontSize: "0.7rem", color: "rgba(240,237,232,0.2)", letterSpacing: "0.05em" }}>
+            © {new Date().getFullYear()} — Vidéaste
+          </span>
 
-        <a href="/mentions-legales" style={{
-          fontSize: "0.65rem", color: "rgba(240,237,232,0.2)",
-          textDecoration: "none", letterSpacing: "0.08em",
-          transition: "color 0.2s",
-        }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.5)")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.2)")}
-        >
-          Mentions légales
-        </a>
-
-        <div style={{ display: "flex", gap: "1.4rem", alignItems: "center" }}>
           <a
             href="https://www.instagram.com/jrv.production/?hl=fr"
             target="_blank" rel="noopener noreferrer" title="Instagram"
@@ -102,7 +90,7 @@ export default function Footer() {
             onMouseEnter={(e) => (e.currentTarget.style.color = "#E05C3A")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.35)")}
           >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
               <circle cx="12" cy="12" r="4"/>
               <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
@@ -116,7 +104,7 @@ export default function Footer() {
             onMouseEnter={(e) => (e.currentTarget.style.color = "#E05C3A")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.35)")}
           >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="3"/>
               <line x1="8" y1="10" x2="8" y2="17"/>
               <line x1="8" y1="7" x2="8" y2="7.5" strokeWidth="2"/>
@@ -124,6 +112,20 @@ export default function Footer() {
             </svg>
           </a>
         </div>
+      </div>
+
+      {/* Mentions légales */}
+      <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
+        <a href="/mentions-legales" style={{
+          fontSize: "0.6rem", color: "rgba(240,237,232,0.15)",
+          textDecoration: "none", letterSpacing: "0.1em",
+          transition: "color 0.2s",
+        }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.4)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.15)")}
+        >
+          Mentions légales
+        </a>
       </div>
     </footer>
   );
