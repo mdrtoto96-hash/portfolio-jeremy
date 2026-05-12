@@ -11,7 +11,7 @@ export default function Footer() {
         paddingBottom: "3rem",
       }}
     >
-      {/* ── Titre Contact qui clignote ── */}
+      {/* ── Titre Contact ── */}
       <div className="footer-title-wrap" style={{
         display: "flex", alignItems: "baseline", justifyContent: "space-between",
         marginBottom: "2rem",
@@ -38,14 +38,10 @@ export default function Footer() {
         <a
           href="mailto:jrv.production85@gmail.com"
           style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "1rem",
+            display: "inline-flex", alignItems: "center", gap: "1rem",
             fontSize: "clamp(1rem, 1.4vw, 1.25rem)",
-            color: "rgba(240,237,232,0.55)",
-            textDecoration: "none",
-            transition: "color 0.2s",
-            letterSpacing: "0.01em",
+            color: "rgba(240,237,232,0.55)", textDecoration: "none",
+            transition: "color 0.2s", letterSpacing: "0.01em",
           }}
           onMouseEnter={(e) => (e.currentTarget.style.color = "#E05C3A")}
           onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.55)")}
@@ -57,14 +53,10 @@ export default function Footer() {
         <a
           href="tel:+33672751954"
           style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "1rem",
+            display: "inline-flex", alignItems: "center", gap: "1rem",
             fontSize: "clamp(1rem, 1.4vw, 1.25rem)",
-            color: "rgba(240,237,232,0.55)",
-            textDecoration: "none",
-            transition: "color 0.2s",
-            letterSpacing: "0.01em",
+            color: "rgba(240,237,232,0.55)", textDecoration: "none",
+            transition: "color 0.2s", letterSpacing: "0.01em",
           }}
           onMouseEnter={(e) => (e.currentTarget.style.color = "#E05C3A")}
           onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.55)")}
@@ -76,19 +68,13 @@ export default function Footer() {
 
       {/* ── Barre basse ── */}
       <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        flexWrap: "wrap",
-        gap: "1rem",
-        borderTop: "1px solid rgba(240,237,232,0.08)",
-        paddingTop: "2rem",
+        display: "flex", justifyContent: "space-between", alignItems: "center",
+        flexWrap: "wrap", gap: "1rem",
+        borderTop: "1px solid rgba(240,237,232,0.08)", paddingTop: "2rem",
       }}>
         <span style={{
-          fontFamily: "var(--font-playfair)",
-          fontStyle: "italic",
-          color: "rgba(240,237,232,0.4)",
-          fontSize: "0.95rem",
+          fontFamily: "var(--font-playfair)", fontStyle: "italic",
+          color: "rgba(240,237,232,0.4)", fontSize: "0.95rem",
         }}>
           Jeremy Rondeau
         </span>
@@ -98,12 +84,9 @@ export default function Footer() {
         </span>
 
         <div style={{ display: "flex", gap: "1.4rem", alignItems: "center" }}>
-          {/* Instagram */}
           <a
             href="https://www.instagram.com/jrv.production/?hl=fr"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Instagram"
+            target="_blank" rel="noopener noreferrer" title="Instagram"
             style={{ color: "rgba(240,237,232,0.35)", transition: "color 0.2s", display: "flex" }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "#E05C3A")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.35)")}
@@ -115,12 +98,9 @@ export default function Footer() {
             </svg>
           </a>
 
-          {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/in/jeremy-rondeau-videaste"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="LinkedIn"
+            target="_blank" rel="noopener noreferrer" title="LinkedIn"
             style={{ color: "rgba(240,237,232,0.35)", transition: "color 0.2s", display: "flex" }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "#E05C3A")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.35)")}

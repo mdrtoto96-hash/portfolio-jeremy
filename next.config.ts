@@ -12,8 +12,8 @@ const CSP = [
   "media-src 'self' blob:",
   // Iframes : YouTube sans cookie + Vimeo (pour les projets futurs)
   "frame-src 'self' https://www.youtube-nocookie.com https://player.vimeo.com",
-  // Connexions réseau autorisées
-  "connect-src 'self'",
+  // Connexions réseau autorisées (Vercel Analytics inclus)
+  "connect-src 'self' https://va.vercel-scripts.com",
   // Aucun plugin Flash ou Java
   "object-src 'none'",
   // Empêche l'injection de balise <base>

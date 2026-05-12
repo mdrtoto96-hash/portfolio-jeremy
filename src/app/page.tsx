@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 import Portfolio from "@/components/sections/Portfolio";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
@@ -10,6 +12,7 @@ const W = "100%";
 const MAX = "1520px";
 const PAD = "0 5rem";
 const NAV_H = 52;
+const SHOWREEL_URL = "https://www.youtube-nocookie.com/embed/dlXrXRIfGts?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&color=white&enablejsapi=1";
 
 const navLinks = [
   { label: "Portfolio",  href: "#portfolio" },
@@ -33,10 +36,92 @@ const NAV_BTN: React.CSSProperties = {
   transition: "color 0.2s", padding: 0,
 };
 
-export default function Home() {
-  const [scrolled,  setScrolled]  = useState(false);
+function ShowreelModal({ onClose }: { onClose: () => void }) {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const sendTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  // Toujours revenir en haut au chargement
+  useEffect(() => {
+    return () => { sendTimers.current.forEach(clearTimeout); };
+  }, []);
+
+  const onIframeLoad = () => {
+    const send = () => {
+      const win = iframeRef.current?.contentWindow;
+      if (!win) return;
+      win.postMessage(JSON.stringify({ event: "command", func: "setVolume", args: [50] }), "*");
+      win.postMessage(JSON.stringify({ event: "command", func: "setPlaybackQuality", args: ["hd1080"] }), "*");
+    };
+    sendTimers.current.forEach(clearTimeout);
+    sendTimers.current = [setTimeout(send, 800), setTimeout(send, 1800)];
+  };
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0,
+        background: "rgba(13,13,13,0.92)",
+        zIndex: 9000,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "2rem",
+      }}
+    >
+      <button
+        onClick={onClose}
+        style={{
+          position: "absolute", top: "1.5rem", right: "1.5rem",
+          background: "none", border: "none", color: "#fff",
+          cursor: "pointer", padding: "0.5rem",
+        }}
+      >
+        <X size={24} />
+      </button>
+
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        onClick={(e) => e.stopPropagation()}
+        style={{ width: "100%", maxWidth: "900px" }}
+      >
+        <div style={{ aspectRatio: "16/9", background: "#111", position: "relative" }}>
+          <iframe
+            ref={iframeRef}
+            src={SHOWREEL_URL}
+            onLoad={onIframeLoad}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: "none" }}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            title="Showreel"
+          />
+        </div>
+
+        <div style={{
+          display: "flex", justifyContent: "space-between",
+          padding: "1rem 0 0", color: "#999", fontSize: "0.8rem",
+        }}>
+          <span style={{ color: "#fff", fontWeight: 500 }}>Showreel</span>
+          <span>Jeremy Rondeau — 2026</span>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+  const [showreel, setShowreel] = useState(false);
+
   useEffect(() => {
     window.history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
@@ -112,29 +197,44 @@ export default function Home() {
             textAlign: "center",
           }}>Jeremy Rondeau</h1>
 
-          {/* Bouton Portfolio */}
+          {/* Bouton Showreel */}
           <button
             className="hero-t3"
-            onClick={() => go("#portfolio")}
+            onClick={() => setShowreel(true)}
             style={{
               marginTop: "2.5rem",
               display: "flex", alignItems: "center", gap: "0.75rem",
-              background: "none", border: "1px solid rgba(240,237,232,0.2)",
-              color: "rgba(240,237,232,0.7)",
-              padding: "0.7rem 1.8rem",
-              fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase",
-              transition: "color 0.25s, border-color 0.25s",
+              background: "rgba(240,237,232,0.1)",
+              border: "1px solid rgba(240,237,232,0.55)",
+              color: "#F0EDE8",
+              padding: "0.9rem 2.2rem",
+              fontSize: "0.7rem", letterSpacing: "0.25em", textTransform: "uppercase",
+              boxShadow: "0 2px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)",
+              transition: "background 0.25s, border-color 0.25s, box-shadow 0.25s",
+              cursor: "pointer",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "rgba(240,237,232,0.6)";
-              e.currentTarget.style.color = "#F0EDE8";
+              e.currentTarget.style.background = "rgba(240,237,232,0.18)";
+              e.currentTarget.style.borderColor = "rgba(240,237,232,0.9)";
+              e.currentTarget.style.boxShadow = "0 4px 28px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.14)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "rgba(240,237,232,0.2)";
-              e.currentTarget.style.color = "rgba(240,237,232,0.7)";
+              e.currentTarget.style.background = "rgba(240,237,232,0.1)";
+              e.currentTarget.style.borderColor = "rgba(240,237,232,0.55)";
+              e.currentTarget.style.boxShadow = "0 2px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)";
             }}
           >
-            Portfolio
+            <span style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              width: "18px", height: "18px",
+              border: "1px solid currentColor", borderRadius: "50%",
+              flexShrink: 0,
+            }}>
+              <svg width="7" height="7" viewBox="0 0 24 24" fill="currentColor" style={{ marginLeft: "1px" }}>
+                <polygon points="5,3 19,12 5,21"/>
+              </svg>
+            </span>
+            Showreel
           </button>
 
           {/* Chevrons scroll */}
@@ -161,6 +261,10 @@ export default function Home() {
         <Footer />
       </div>
 
+      {/* ── Modale Showreel ── */}
+      <AnimatePresence>
+        {showreel && <ShowreelModal onClose={() => setShowreel(false)} />}
+      </AnimatePresence>
 
     </div>
   );

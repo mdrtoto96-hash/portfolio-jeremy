@@ -9,28 +9,9 @@ const BLOCKED_PATHS = [
   "/config.php", "/phpinfo", "/shell", "/xmlrpc", "/.htaccess",
 ];
 
-// Rate limiting simple en mémoire
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-
-function checkRateLimit(ip: string, max: number, windowMs: number): boolean {
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip);
-  if (!entry || now > entry.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + windowMs });
-    return true;
-  }
-  if (entry.count >= max) return false;
-  entry.count++;
-  return true;
-}
-
 export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const ua = req.headers.get("user-agent") ?? "";
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    req.headers.get("x-real-ip") ??
-    "unknown";
 
   // 1. Bloquer les chemins suspects
   for (const p of BLOCKED_PATHS) {
@@ -43,16 +24,6 @@ export function proxy(req: NextRequest) {
   for (const pattern of BLOCKED_UA) {
     if (pattern.test(ua)) {
       return new NextResponse("Forbidden", { status: 403 });
-    }
-  }
-
-  // 3. Rate limiting sur l'API contact (5 req / 15 min par IP)
-  if (pathname === "/api/contact") {
-    if (!checkRateLimit(ip, 5, 15 * 60 * 1000)) {
-      return NextResponse.json(
-        { error: "Trop de tentatives. Réessayez dans 15 minutes." },
-        { status: 429 }
-      );
     }
   }
 
