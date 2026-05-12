@@ -83,6 +83,17 @@ export default function Footer() {
           © {new Date().getFullYear()} — Vidéaste
         </span>
 
+        <a href="/mentions-legales" style={{
+          fontSize: "0.65rem", color: "rgba(240,237,232,0.2)",
+          textDecoration: "none", letterSpacing: "0.08em",
+          transition: "color 0.2s",
+        }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.5)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,237,232,0.2)")}
+        >
+          Mentions légales
+        </a>
+
         <div style={{ display: "flex", gap: "1.4rem", alignItems: "center" }}>
           <a
             href="https://www.instagram.com/jrv.production/?hl=fr"
